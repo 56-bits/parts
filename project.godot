@@ -11,8 +11,10 @@ config_version=3
 [application]
 
 config/name="parts"
+run/main_scene="res://menue/main_menue.tscn"
 config/icon="res://icon.png"
 
 [rendering]
 
+environment/default_clear_color=Color( 0.184314, 0.215686, 0.247059, 1 )
 environment/default_environment="res://default_env.tres"
