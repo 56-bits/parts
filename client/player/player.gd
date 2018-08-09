@@ -5,7 +5,8 @@ var movement = Vector2(0,0)
 var pos = Vector2(0,0)
 
 func _ready():
-	pass
+	if is_network_master():
+		$Name.text = $"/root/globals".settings.player_name
 
 func _input(event):
 	pass

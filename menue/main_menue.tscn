@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://menue/main_menue.gd" type="Script" id=1]
+[ext_resource path="res://menue/feedback.tscn" type="PackedScene" id=2]
 
-[node name="main_menue" type="Node" index="0"]
+[node name="main_menue" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -21,15 +22,21 @@ size_flags_vertical = 1
 stretch = false
 stretch_shrink = 1
 
-[node name="VBoxContainer_main" type="VBoxContainer" parent="ViewportContainer" index="0"]
+[node name="feedback" parent="ViewportContainer" index="0" instance=ExtResource( 2 )]
 
+margin_top = -64.0
+_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
+
+[node name="VBoxContainer_main" type="VBoxContainer" parent="ViewportContainer" index="1"]
+
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -31.5
+margin_left = -62.5
 margin_top = -37.0
-margin_right = 31.5
+margin_right = 62.5
 margin_bottom = 37.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -46,7 +53,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 63.0
+margin_right = 125.0
 margin_bottom = 22.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -59,7 +66,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "server"
+text = "Host server"
 flat = true
 align = 1
 
@@ -70,7 +77,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 26.0
-margin_right = 63.0
+margin_right = 125.0
 margin_bottom = 48.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -83,7 +90,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "client"
+text = "Connect to server"
 flat = true
 align = 1
 
@@ -94,7 +101,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 52.0
-margin_right = 63.0
+margin_right = 125.0
 margin_bottom = 74.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -107,21 +114,21 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "settings"
+text = "Settings"
 flat = true
 align = 1
 
-[node name="VBoxContainer_settings" type="VBoxContainer" parent="ViewportContainer" index="1"]
+[node name="VBoxContainer_settings" type="VBoxContainer" parent="ViewportContainer" index="2"]
 
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -31.5
-margin_top = -37.0
-margin_right = 31.5
-margin_bottom = 37.0
+margin_left = -100.0
+margin_top = -39.0
+margin_right = 100.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 200, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -129,10 +136,11 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
-_sections_unfolded = [ "Margin" ]
+_sections_unfolded = [ "Margin", "Rect" ]
 
-[node name="HSplitContainer" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="0"]
+[node name="text_size_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="0"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -149,7 +157,7 @@ split_offset = 0
 collapsed = false
 dragger_visibility = 0
 
-[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/HSplitContainer" index="0"]
+[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/text_size_section" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -169,7 +177,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="HSlider_textSize" type="HSlider" parent="ViewportContainer/VBoxContainer_settings/HSplitContainer" index="1"]
+[node name="HSlider_textSize" type="HSlider" parent="ViewportContainer/VBoxContainer_settings/text_size_section" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -199,14 +207,270 @@ ticks_on_borders = false
 focus_mode = 2
 _sections_unfolded = [ "Rect" ]
 
-[node name="ToolButton_backSettings" type="ToolButton" parent="ViewportContainer/VBoxContainer_settings" index="1"]
+[node name="name_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 12.0
-margin_bottom = 22.0
+margin_right = 200.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+split_offset = 0
+collapsed = false
+dragger_visibility = 0
+
+[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/name_section" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 5.0
+margin_right = 38.0
+margin_bottom = 19.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Name"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="LineEdit" type="LineEdit" parent="ViewportContainer/VBoxContainer_settings/name_section" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 50.0
+margin_right = 200.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 1
+size_flags_horizontal = 1
+size_flags_vertical = 1
+text = "Guest"
+focus_mode = 2
+context_menu_enabled = true
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+caret_position = 0
+
+[node name="ip_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 28.0
+margin_right = 200.0
+margin_bottom = 52.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+split_offset = 0
+collapsed = false
+dragger_visibility = 0
+
+[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/ip_section" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 5.0
+margin_right = 57.0
+margin_bottom = 19.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Server IP"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="LineEdit" type="LineEdit" parent="ViewportContainer/VBoxContainer_settings/ip_section" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 69.0
+margin_right = 200.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 1
+size_flags_horizontal = 1
+size_flags_vertical = 1
+text = "101.175.213.94"
+focus_mode = 2
+context_menu_enabled = true
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+caret_position = 0
+
+[node name="port_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 56.0
+margin_right = 200.0
+margin_bottom = 80.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+split_offset = 0
+collapsed = false
+dragger_visibility = 0
+
+[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/port_section" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 5.0
+margin_right = 26.0
+margin_bottom = 19.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Port"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="SpinBox" type="SpinBox" parent="ViewportContainer/VBoxContainer_settings/port_section" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 38.0
+margin_right = 200.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 1024.0
+max_value = 65535.0
+step = 1.0
+page = 0.0
+value = 8080.0
+exp_edit = false
+rounded = false
+editable = true
+prefix = ""
+suffix = ""
+
+[node name="player_limit_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 84.0
+margin_right = 200.0
+margin_bottom = 108.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+split_offset = 0
+collapsed = false
+dragger_visibility = 0
+
+[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/player_limit_section" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 5.0
+margin_right = 73.0
+margin_bottom = 19.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Player limit"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="SpinBox" type="SpinBox" parent="ViewportContainer/VBoxContainer_settings/player_limit_section" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 85.0
+margin_right = 200.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 32.0
+exp_edit = false
+rounded = false
+editable = true
+prefix = ""
+suffix = ""
+
+[node name="ToolButton_backSettings" type="ToolButton" parent="ViewportContainer/VBoxContainer_settings" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 112.0
+margin_right = 200.0
+margin_bottom = 134.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -218,7 +482,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "back"
+text = "Back"
 flat = true
 align = 1
 
@@ -227,6 +491,8 @@ align = 1
 [connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_client" to="." method="_on_ToolButton_client_pressed"]
 
 [connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_settings" to="." method="_on_ToolButton_settings_pressed"]
+
+[connection signal="text_entered" from="ViewportContainer/VBoxContainer_settings/ip_section/LineEdit" to="." method="_on_LineEdit_ip_text_entered"]
 
 [connection signal="pressed" from="ViewportContainer/VBoxContainer_settings/ToolButton_backSettings" to="." method="_on_ToolButton_backSettings_pressed"]
 

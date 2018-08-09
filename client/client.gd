@@ -1,17 +1,19 @@
 extends Node
 
-#parameters of server to connect to
-const SERVER_IP = "101.174.207.22"
-const SERVER_PORT = 8080
-
 var selfPeerID = 0
 
 var player_pk = preload("res://client/player/player.tscn")
 
+sync var players = {}
+
+onready var my_info = {
+	"player_name" : $"/root/globals".settings.player_name
+}
+
 func _ready():
 	#create client
 	var client = NetworkedMultiplayerENet.new()
-	client.create_client(SERVER_IP, SERVER_PORT)
+	client.create_client($"/root/globals".settings.server_ip, $"/root/globals".settings.port)
 	get_tree().set_network_peer(client)
 	
 	selfPeerID = get_tree().get_network_unique_id()
@@ -26,7 +28,7 @@ func _ready():
 
 func _peer_connected(id):
 	if id != 1:
-		print("peer %s connected".format(id))
+		print("peer %s connected" % str(id))
 		
 		var player = player_pk.instance()
 		player.name = String(id)
@@ -36,7 +38,7 @@ func _peer_connected(id):
 
 func _peer_disconnected(id):
 	if id != 1:
-		print("peer %s disconnected".format(id))
+		print("peer %s disconnected" % str(id))
 		get_node("world/players/" + str(id)).queue_free()
 	else:
 		_server_disconnected()
@@ -59,3 +61,14 @@ func _server_disconnected():
 	print("server disconnected")
 	get_tree().change_scene("res://menues/main_menue.tscn")
 	
+
+remote func get_player_inf():
+	var inf = {
+		"player_name" : $"/root/globals".settings.player_name
+	}
+	
+	rpc_id(1, "register_player", selfPeerID, inf)
+
+remote func update_players():
+	for p in $"world/players".get_children():
+		p.get_node("Name").text = players[int(p.name)]["player_name"]
