@@ -1,6 +1,6 @@
 extends Node
 
-var player_pk = preload("res://client/player/player.tscn")
+var player_pk = preload("res://client/player/other_player.tscn")
 sync var players = {}
 
 
@@ -31,6 +31,7 @@ func _client_disconnected(id):
 
 remote func register_player(id, inf):
 	players[id] = inf
+	print(inf["player_name"], " has registered")
 	rset("players", players)
 	rpc("update_players")
 	update_players()

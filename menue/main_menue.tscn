@@ -29,7 +29,6 @@ _sections_unfolded = [ "Anchor", "Margin", "Rect" ]
 
 [node name="VBoxContainer_main" type="VBoxContainer" parent="ViewportContainer" index="1"]
 
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -120,6 +119,7 @@ align = 1
 
 [node name="VBoxContainer_settings" type="VBoxContainer" parent="ViewportContainer" index="2"]
 
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -324,7 +324,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 1
 size_flags_horizontal = 1
 size_flags_vertical = 1
-text = "101.175.213.94"
+text = "121.216.196.67"
 focus_mode = 2
 context_menu_enabled = true
 placeholder_alpha = 0.6

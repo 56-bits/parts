@@ -11,4 +11,13 @@ script = ExtResource( 1 )
 
 [node name="players" type="Node" parent="world" index="0"]
 
+[node name="network_tick" type="Timer" parent="." index="1"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="network_tick" to="." method="_on_network_tick"]
+
 
