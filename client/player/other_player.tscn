@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://client/player/player.gd" type="Script" id=1]
+[ext_resource path="res://client/player/other_player.gd" type="Script" id=1]
 [ext_resource path="res://characters/character.tscn" type="PackedScene" id=2]
 
-[node name="player" type="Node2D"]
+[node name="other_player" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -17,7 +17,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 34.0
 margin_top = -7.0
-margin_right = 34.0
+margin_right = 74.0
 margin_bottom = 7.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -25,7 +25,6 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

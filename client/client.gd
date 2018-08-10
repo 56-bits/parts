@@ -3,6 +3,7 @@ extends Node
 var selfPeerID = 0
 
 var player_pk = preload("res://client/player/player.tscn")
+var other_player_pk = preload("res://client/player/other_player.tscn")
 
 sync var players = {}
 
@@ -30,7 +31,7 @@ func _peer_connected(id):
 	if id != 1:
 		print("peer %s connected" % str(id))
 		
-		var player = player_pk.instance()
+		var player = other_player_pk.instance()
 		player.name = String(id)
 		player.set_network_master(id)
 		$world/players.add_child(player)
@@ -50,16 +51,20 @@ func _connected_ok():
 	player.name = String(selfPeerID)
 	player.set_network_master(selfPeerID)
 	$world/players.add_child(player)
+	
+	$network_tick.start()
 
 
 func _connected_fail():
 	print("connection failed")
 	get_tree().change_scene("res://menues/main_menue.tscn")
+	$network_tick.stop()
 	
 	
 func _server_disconnected():
 	print("server disconnected")
 	get_tree().change_scene("res://menues/main_menue.tscn")
+	$network_tick.stop()
 	
 
 remote func get_player_inf():
@@ -72,3 +77,6 @@ remote func get_player_inf():
 remote func update_players():
 	for p in $"world/players".get_children():
 		p.get_node("Name").text = players[int(p.name)]["player_name"]
+
+func _on_network_tick(): # is a signal from the timer
+	get_node("world/players/%s" % str(selfPeerID))._network_tick()
