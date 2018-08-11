@@ -78,5 +78,9 @@ remote func update_players():
 	for p in $"world/players".get_children():
 		p.get_node("Name").text = players[int(p.name)]["player_name"]
 
+remote func set_world(data):
+	$world.clear_world()
+	$world.set_world(data)
+
 func _on_network_tick(): # is a signal from the timer
 	get_node("world/players/%s" % str(selfPeerID))._network_tick()
