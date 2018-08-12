@@ -1,5 +1,7 @@
 extends Node2D
 
+var tile_type = 0
+
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -7,9 +9,7 @@ func _ready():
 
 func _process(delta):
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
-		$"../world".rpc("edit_terrain", get_local_mouse_position())
-	elif Input.is_mouse_button_pressed(BUTTON_RIGHT):
-		$"../world".rpc("edit_terrain", get_local_mouse_position(), -1) #remove a tile
+		$"../world".rpc("edit_terrain", get_local_mouse_position(), tile_type)
 	
 	if get_tree().is_network_server():
 		#camera controll
@@ -21,3 +21,7 @@ func _process(delta):
 			$"../Camera2D".position.y -= 30
 		if Input.is_action_pressed("move_down"):
 			$"../Camera2D".position.y += 30
+
+
+func _on_ItemList_item_selected(index):
+	tile_type = index - 1

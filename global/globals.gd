@@ -2,7 +2,7 @@ extends Node
 
 var settings = {
 	player_name = "Guest",
-	server_ip = "121.217.113.67",
+	server_ip = "121.216.98.37",
 	port = 8080,
 	player_limit = 32
 }

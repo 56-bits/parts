@@ -1,7 +1,12 @@
-[gd_resource type="TileSet" load_steps=3 format=2]
+[gd_resource type="TileSet" load_steps=4 format=2]
 
 [ext_resource path="res://world/terrain/icon.png" type="Texture" id=1]
 [ext_resource path="res://world/terrain/icon2.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
 
 [resource]
 
@@ -13,7 +18,12 @@
 0/is_autotile = false
 0/occluder_offset = Vector2( 16, 16 )
 0/navigation_offset = Vector2( 16, 16 )
-0/shapes = [  ]
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
+} ]
 1/name = "tile2"
 1/texture = ExtResource( 2 )
 1/tex_offset = Vector2( 0, 0 )
@@ -22,5 +32,10 @@
 1/is_autotile = false
 1/occluder_offset = Vector2( 16, 16 )
 1/navigation_offset = Vector2( 16, 16 )
-1/shapes = [  ]
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
+} ]
 
