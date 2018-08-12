@@ -1,9 +1,81 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://world/world.tscn" type="PackedScene" id=1]
+[ext_resource path="res://server/server.gd" type="Script" id=1]
+[ext_resource path="res://world/world.tscn" type="PackedScene" id=2]
+[ext_resource path="res://server/server_control.gd" type="Script" id=3]
+[ext_resource path="res://client/gui/gui.gd" type="Script" id=4]
 
-[node name="server" type="Node" index="0"]
+[node name="game" type="Node" index="0"]
 
-[node name="world" parent="." index="0" instance=ExtResource( 1 )]
+script = ExtResource( 1 )
+
+[node name="world" parent="." index="0" instance=ExtResource( 2 )]
+
+[node name="players" type="Node" parent="world" index="0"]
+
+[node name="server_control" type="Node2D" parent="." index="1"]
+
+script = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="2"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+
+[node name="gui" type="CanvasLayer" parent="." index="3"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+script = ExtResource( 4 )
+
+[node name="ItemList" type="ItemList" parent="gui" index="0"]
+
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_bottom = 600.0
+grow_horizontal = 0
+rect_min_size = Vector2( 48, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+items = [  ]
+select_mode = 0
+allow_reselect = true
+auto_height = true
+fixed_column_width = 32
+icon_mode = 1
+fixed_icon_size = Vector2( 0, 0 )
+_sections_unfolded = [ "Columns", "Grow Direction" ]
+
+[connection signal="item_selected" from="gui/ItemList" to="server_control" method="_on_ItemList_item_selected"]
 
 
