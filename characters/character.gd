@@ -4,7 +4,7 @@ var speed = 150
 
 var air_multiplier = 0.75
 
-var sprint_multiplier = 1.5
+var sprint_multiplier = 2
 var is_sprinting = false
 
 var jump_speed = 200
@@ -13,12 +13,8 @@ var velocity = Vector2(0,0)
 var dir = Vector2(0,0)
 
 func _ready():
-	pass
-
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+	$Particles2D.restart()
+	$Sprite.modulate = Color(randf(), randf(), randf())
 
 func _physics_process(delta):
 	
