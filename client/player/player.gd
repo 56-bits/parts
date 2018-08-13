@@ -19,7 +19,7 @@ func _process(delta):
 	if Input.is_action_pressed("move_down"):
 		movement.y += 1
 	
-	var sprint = Input.is_key_pressed(KEY_SHIFT)
+	var sprint = Input.is_action_pressed("fast_modifier")
 	
 	$character.rpc_unreliable("move", movement, sprint)
 
