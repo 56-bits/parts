@@ -6,6 +6,19 @@ var settings = {
 	port = 8080,
 	player_limit = 32
 }
+
+var feedback
+
+func _init():
+	var gui_layer = CanvasLayer.new()
+	gui_layer.name = "gui"
+	add_child(gui_layer)
+	gui_layer.add_child(preload("res://menue/feedback.tscn").instance())
+	
+	print_tree_pretty()
+	
+	feedback = get_node("gui/feedback")
+
 #
 #var config_file = ConfigFile.new()
 #

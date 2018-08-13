@@ -1,10 +1,10 @@
 extends RichTextLabel
 
 var queue = []
-var message_limit = 4
+var message_limit = 20
 
 func _ready():
-	push_align(VALIGN_BOTTOM)
+	pass#push_align(VALIGN_BOTTOM)
 
 func refresh():
 	if queue.size() > message_limit:
@@ -13,6 +13,8 @@ func refresh():
 	#clear present text
 	text = ""
 	for message in queue:
+		
+		newline()
 		
 		#choose message colour
 		match message.status:
@@ -24,7 +26,6 @@ func refresh():
 				push_color(Color(0.8,0.8,0.8))
 		
 		add_text(message.txt)
-		newline()
 
 func new_message(message, type = ""):
 	queue.push_back({txt = message, status = type})
