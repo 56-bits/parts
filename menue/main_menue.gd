@@ -38,7 +38,8 @@ func _on_ToolButton_backSettings_pressed():
 	global.settings.player_limit = $ViewportContainer/VBoxContainer_settings/player_limit_section/SpinBox.value
 
 func _on_LineEdit_ip_text_entered(new_text):
+	var feedback = $"/root/globals".feedback
 	if new_text.is_valid_ip_address():
-		$ViewportContainer/feedback.new_message("IP adress is valid", "good")
+		feedback.new_message("IP adress is valid", "good")
 	else:
-		$ViewportContainer/feedback.new_message("IP adress is invalid", "bad")
+		feedback.new_message("IP adress is invalid", "bad")

@@ -1,5 +1,7 @@
 extends Node
 
+onready var feedback = $"/root/globals".feedback
+
 var player_pk = preload("res://client/player/other_player.tscn")
 sync var players = {}
 
@@ -11,13 +13,16 @@ func _ready():
 	server.create_server($"/root/globals".settings.port, $"/root/globals".settings.player_limit)
 	get_tree().set_network_peer(server)
 	
+	feedback.new_message("server created")
+		
 	#connect functions
 	get_tree().connect("network_peer_connected", self,"_client_connected"   )
 	get_tree().connect("network_peer_disconnected", self, "_client_disconnected")
 
 func _client_connected(id):
-	print("client %s connected" % str(id))
-	#creta player locally
+	feedback.new_message("client %s connected" % str(id))
+	
+	#create player locally
 	var player = player_pk.instance()
 	player.name = String(id)
 	player.set_network_master(id)
@@ -31,7 +36,7 @@ func _client_connected(id):
 	rpc_id(id, "set_world", data)
 
 func _client_disconnected(id):
-	print("client %s disconnected" % str(id))
+	feedback.new_message("client %s disconnected" % str(id))
 	
 	get_node("world/players/" + str(id)).queue_free()
 	
@@ -39,7 +44,7 @@ func _client_disconnected(id):
 
 remote func register_player(id, inf):
 	players[id] = inf
-	print(inf["player_name"], " has registered")
+	feedback.new_message(inf["player_name"], " has registered")
 	rset("players", players)
 	rpc("update_players")
 	update_players()

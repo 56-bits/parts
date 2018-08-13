@@ -1,5 +1,7 @@
 extends Node
 
+onready var feedback = $"/root/globals".feedback
+
 var selfPeerID = 0
 
 var player_pk = preload("res://client/player/player.tscn")
@@ -17,7 +19,11 @@ func _ready():
 	client.create_client($"/root/globals".settings.server_ip, $"/root/globals".settings.port)
 	get_tree().set_network_peer(client)
 	
+	feedback.new_message("connecting to server...")
+	
 	selfPeerID = get_tree().get_network_unique_id()
+	
+	$world.clear_world()
 	
 	#connect functions
 	get_tree().connect("network_peer_connected", self, "_peer_connected")
@@ -29,7 +35,7 @@ func _ready():
 
 func _peer_connected(id):
 	if id != 1:
-		print("peer %s connected" % str(id))
+		feedback.new_message("peer %s connected" % str(id))
 		
 		var player = other_player_pk.instance()
 		player.name = String(id)
@@ -39,13 +45,13 @@ func _peer_connected(id):
 
 func _peer_disconnected(id):
 	if id != 1:
-		print("peer %s disconnected" % str(id))
+		feedback.new_message("peer %s disconnected" % str(id))
 		get_node("world/players/" + str(id)).queue_free()
-	else:
+	else: #since the server is id 1, its is equivalent to the server disconnecting
 		_server_disconnected()
 
 func _connected_ok():
-	print("connected to server")
+	feedback.new_message("connected to server", "good")
 	
 	var player = player_pk.instance()
 	player.name = String(selfPeerID)
@@ -54,16 +60,14 @@ func _connected_ok():
 	
 	$network_tick.start()
 
-
 func _connected_fail():
-	print("connection failed")
-	get_tree().change_scene("res://menues/main_menue.tscn")
+	feedback.new_message("connection failed", "bad")
+	get_tree().change_scene("res://menue/main_menue.tscn")
 	$network_tick.stop()
-	
-	
+
 func _server_disconnected():
-	print("server disconnected")
-	get_tree().change_scene("res://menues/main_menue.tscn")
+	feedback.new_message("server disconnected")
+	get_tree().change_scene("res://menue/main_menue.tscn")
 	$network_tick.stop()
 	
 
