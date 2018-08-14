@@ -2,6 +2,8 @@ extends Node
 
 onready var feedback = $"/root/globals".feedback
 
+var spawn_point = Vector2(0, -64)
+
 var selfPeerID = 0
 
 var player_pk = preload("res://client/player/player.tscn")
@@ -40,6 +42,7 @@ func _peer_connected(id):
 		
 		var player = other_player_pk.instance()
 		player.name = String(id)
+		player.position = spawn_point
 		player.set_network_master(id)
 		$world/players.add_child(player)
 		
@@ -56,6 +59,7 @@ func _connected_ok():
 	
 	var player = player_pk.instance()
 	player.name = String(selfPeerID)
+	player.position = spawn_point
 	player.set_network_master(selfPeerID)
 	$world/players.add_child(player)
 	

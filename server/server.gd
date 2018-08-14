@@ -5,6 +5,7 @@ onready var feedback = $"/root/globals".feedback
 var player_pk = preload("res://client/player/other_player.tscn")
 sync var players = {}
 
+var spawn_point = Vector2(0, -64)
 
 func _ready():
 	
@@ -25,6 +26,7 @@ func _client_connected(id):
 	#create player locally
 	var player = player_pk.instance()
 	player.name = String(id)
+	player.position = spawn_point
 	player.set_network_master(id)
 	$world/players.add_child(player)
 	

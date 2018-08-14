@@ -30,6 +30,9 @@ func _physics_process(delta):
 	else:
 		velocity.x = dir.x * speed * air_multiplier
 		
+		if dir.y < 0 and velocity.y < 0:
+			velocity.y -= 5
+		
 		velocity.y += 10
 	
 	#increase speed for sprinting
