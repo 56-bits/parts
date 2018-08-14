@@ -12,14 +12,17 @@ var jump_speed = 200
 var velocity = Vector2(0,0) 
 var dir = Vector2(0,0)
 
+onready var colour = $"/root/globals".settings.colour setget change_colour
+
 func _ready():
 	$Particles2D.restart()
-	$Sprite.modulate = Color(randf(), randf(), randf())
+	change_colour(colour)
 
 func _physics_process(delta):
 	
 	if is_on_floor():
 		velocity.x = dir.x * speed
+		velocity.y = 0
 		
 		if dir.y < 0:
 			velocity.y = -jump_speed
@@ -39,6 +42,10 @@ func _physics_process(delta):
 	get_parent().position += position
 	position = Vector2(0,0)
 
-sync func move(direction = Vector2(0,0), sprint = false):
+func change_colour(new_colour):
+	colour = new_colour
+	$Sprite.modulate = new_colour
+
+func move(direction = Vector2(0,0), sprint = false):
 	dir = direction.normalized()
 	is_sprinting = sprint

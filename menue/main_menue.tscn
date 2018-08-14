@@ -23,6 +23,7 @@ stretch_shrink = 1
 
 [node name="VBoxContainer_main" type="VBoxContainer" parent="ViewportContainer" index="0"]
 
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -113,7 +114,6 @@ align = 1
 
 [node name="VBoxContainer_settings" type="VBoxContainer" parent="ViewportContainer" index="1"]
 
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -263,7 +263,7 @@ caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
 
-[node name="ip_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="2"]
+[node name="colour_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -271,7 +271,71 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 28.0
 margin_right = 200.0
-margin_bottom = 52.0
+margin_bottom = 48.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+split_offset = 0
+collapsed = false
+dragger_visibility = 0
+
+[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/colour_section" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 3.0
+margin_right = 41.0
+margin_bottom = 17.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Colour"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="ViewportContainer/VBoxContainer_settings/colour_section" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 53.0
+margin_right = 200.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = true
+align = 1
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+
+[node name="ip_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 52.0
+margin_right = 200.0
+margin_bottom = 76.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -326,15 +390,15 @@ caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
 
-[node name="port_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="3"]
+[node name="port_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 56.0
+margin_top = 80.0
 margin_right = 200.0
-margin_bottom = 80.0
+margin_bottom = 104.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -391,15 +455,15 @@ editable = true
 prefix = ""
 suffix = ""
 
-[node name="player_limit_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="4"]
+[node name="player_limit_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 84.0
+margin_top = 108.0
 margin_right = 200.0
-margin_bottom = 108.0
+margin_bottom = 132.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -456,15 +520,15 @@ editable = true
 prefix = ""
 suffix = ""
 
-[node name="ToolButton_backSettings" type="ToolButton" parent="ViewportContainer/VBoxContainer_settings" index="5"]
+[node name="ToolButton_backSettings" type="ToolButton" parent="ViewportContainer/VBoxContainer_settings" index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 112.0
+margin_top = 136.0
 margin_right = 200.0
-margin_bottom = 134.0
+margin_bottom = 158.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
