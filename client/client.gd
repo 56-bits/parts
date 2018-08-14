@@ -10,7 +10,8 @@ var other_player_pk = preload("res://client/player/other_player.tscn")
 sync var players = {}
 
 onready var my_info = {
-	"player_name" : $"/root/globals".settings.player_name
+	"player_name" : $"/root/globals".settings.player_name,
+	"colour" : $"/root/globals".settings.colour
 }
 
 func _ready():
@@ -66,21 +67,18 @@ func _connected_fail():
 	$network_tick.stop()
 
 func _server_disconnected():
-	feedback.new_message("server disconnected")
+	feedback.new_message("server disconnected", "bad")
 	get_tree().change_scene("res://menue/main_menue.tscn")
 	$network_tick.stop()
 	
 
 remote func get_player_inf():
-	var inf = {
-		"player_name" : $"/root/globals".settings.player_name
-	}
-	
-	rpc_id(1, "register_player", selfPeerID, inf)
+	rpc_id(1, "register_player", selfPeerID, my_info)
 
 remote func update_players():
 	for p in $"world/players".get_children():
 		p.get_node("Name").text = players[int(p.name)]["player_name"]
+		p.get_node("character").colour = players[int(p.name)]["colour"]
 
 remote func set_world(data):
 	$world.clear_world()
