@@ -38,7 +38,9 @@ script = ExtResource( 4 )
 anchor_left = 1.0
 anchor_top = 0.0
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.0
+margin_left = -48.0
+margin_bottom = 600.0
 grow_horizontal = 0
 rect_min_size = Vector2( 48, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -56,7 +58,28 @@ auto_height = true
 fixed_column_width = 32
 icon_mode = 0
 fixed_icon_size = Vector2( 0, 0 )
-_sections_unfolded = [ "Columns", "Grow Direction", "Icon", "Mouse", "Rect" ]
+_sections_unfolded = [ "Columns", "Grow Direction", "Icon", "Margin", "Mouse", "Rect" ]
+
+[node name="coordinates" type="Label" parent="gui" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "(0, 0)"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors" ]
 
 [connection signal="timeout" from="network_tick" to="." method="_on_network_tick"]
 

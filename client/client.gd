@@ -86,3 +86,4 @@ remote func set_world(data):
 
 func _on_network_tick(): # is a signal from the timer
 	get_node("world/players/%s" % str(selfPeerID))._network_tick()
+	$gui._network_tick()
