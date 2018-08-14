@@ -26,7 +26,8 @@ func set_world(data):
 
 sync func edit_terrain(pos, type = 0):
 	var cell = $terrain.world_to_map(pos)
-	$terrain.set_cellv(cell, type)
+	if cell.y < 0:
+		$terrain.set_cellv(cell, type)
 
 func get_cell_pos(pos):
 	return $terrain.world_to_map(pos)
