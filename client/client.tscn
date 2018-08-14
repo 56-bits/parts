@@ -60,14 +60,75 @@ icon_mode = 0
 fixed_icon_size = Vector2( 0, 0 )
 _sections_unfolded = [ "Columns", "Grow Direction", "Icon", "Margin", "Mouse", "Rect" ]
 
-[node name="coordinates" type="Label" parent="gui" index="1"]
+[node name="VSplitContainer" type="VSplitContainer" parent="gui" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 40.0
-margin_bottom = 14.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+split_offset = 0
+collapsed = false
+dragger_visibility = 0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="gui/VSplitContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 193.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+split_offset = 0
+collapsed = false
+dragger_visibility = 0
+
+[node name="show_player_list" type="CheckButton" parent="gui/VSplitContainer/HSplitContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 149.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "PLayer List"
+flat = false
+align = 0
+
+[node name="coordinates" type="Label" parent="gui/VSplitContainer/HSplitContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 161.0
+margin_top = 13.0
+margin_right = 193.0
+margin_bottom = 27.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -81,10 +142,30 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors" ]
 
+[node name="VBoxContainer" type="VBoxContainer" parent="gui/VSplitContainer" index="1"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 52.0
+margin_right = 188.0
+margin_bottom = 66.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
 [connection signal="timeout" from="network_tick" to="." method="_on_network_tick"]
 
 [connection signal="item_rmb_selected" from="gui/ItemList" to="client_control" method="_on_ItemList_item_rmb_selected"]
 
 [connection signal="item_selected" from="gui/ItemList" to="client_control" method="_on_ItemList_item_selected"]
+
+[connection signal="toggled" from="gui/VSplitContainer/HSplitContainer/show_player_list" to="gui" method="_on_show_player_list_toggled"]
 
 

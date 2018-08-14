@@ -3,6 +3,8 @@ extends Node2D
 var movement = Vector2()
 var sprint = false
 
+onready var last_pos = position
+
 func _ready():
 	$Name.text = $"/root/globals".settings.player_name
 
@@ -27,4 +29,7 @@ func _draw():
 		draw_rect(Rect2(-Vector2(18, 34), Vector2(34, 68)), Color(1, 0, 0, 0.5), false)
 
 func _network_tick():
-	rpc("update_movement", position, movement, sprint)
+	if position != last_pos:
+		rpc("update_movement", position, movement, sprint)
+		last_pos = position
+	
