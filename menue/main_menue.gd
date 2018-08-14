@@ -1,9 +1,15 @@
 extends Node
 
 var menue_id = 0
+onready var global = $"/root/globals"
 
 func _ready():
-	pass
+	$ViewportContainer/VBoxContainer_settings/name_section/LineEdit.text = global.settings.player_name 
+	$ViewportContainer/VBoxContainer_settings/ip_section/LineEdit.text = global.settings.server_ip
+	$ViewportContainer/VBoxContainer_settings/port_section/SpinBox.value = global.settings.port
+	$ViewportContainer/VBoxContainer_settings/player_limit_section/SpinBox.value = global.settings.player_limit
+	$ViewportContainer/VBoxContainer_settings/colour_section/ColorPickerButton.color = global.settings.colour
+
 
 func _process(delta):
 	#menue naviagation
@@ -31,11 +37,11 @@ func _on_ToolButton_settings_pressed():
 func _on_ToolButton_backSettings_pressed():
 	menue_id = 0
 	
-	var global = $"/root/globals"
 	global.settings.player_name = $ViewportContainer/VBoxContainer_settings/name_section/LineEdit.text
 	global.settings.server_ip = $ViewportContainer/VBoxContainer_settings/ip_section/LineEdit.text
 	global.settings.port = $ViewportContainer/VBoxContainer_settings/port_section/SpinBox.value
 	global.settings.player_limit = $ViewportContainer/VBoxContainer_settings/player_limit_section/SpinBox.value
+	global.settings.colour = $ViewportContainer/VBoxContainer_settings/colour_section/ColorPickerButton.color
 
 func _on_LineEdit_ip_text_entered(new_text):
 	var feedback = $"/root/globals".feedback

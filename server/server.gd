@@ -44,7 +44,7 @@ func _client_disconnected(id):
 
 remote func register_player(id, inf):
 	players[id] = inf
-	feedback.new_message(inf["player_name"], " has registered")
+	feedback.new_message(inf["player_name"] + " has registered")
 	rset("players", players)
 	rpc("update_players")
 	update_players()
@@ -52,3 +52,4 @@ remote func register_player(id, inf):
 func update_players():
 	for p in $"world/players".get_children():
 		p.get_node("Name").text = players[int(p.name)]["player_name"]
+		p.get_node("character").colour = players[int(p.name)]["colour"]
