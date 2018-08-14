@@ -4,7 +4,8 @@ var settings = {
 	player_name = "Guest",
 	server_ip = "121.216.98.37",
 	port = 8080,
-	player_limit = 32
+	player_limit = 32,
+	colour = Color(1, 1, 1)
 }
 
 onready var feedback = $"gui/feedback"
