@@ -23,7 +23,6 @@ stretch_shrink = 1
 
 [node name="VBoxContainer_main" type="VBoxContainer" parent="ViewportContainer" index="0"]
 
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -114,6 +113,7 @@ align = 1
 
 [node name="VBoxContainer_settings" type="VBoxContainer" parent="ViewportContainer" index="1"]
 
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

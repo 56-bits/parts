@@ -2,7 +2,7 @@
 
 [ext_resource path="res://menue/feedback.gd" type="Script" id=1]
 
-[node name="feedback" type="RichTextLabel" index="0"]
+[node name="feedback" type="RichTextLabel"]
 
 anchor_left = 0.0
 anchor_top = 1.0
