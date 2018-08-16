@@ -9,6 +9,8 @@ var is_sprinting = false
 
 var jump_speed = 200
 
+var gravity = 10
+
 var velocity = Vector2(0,0) 
 var dir = Vector2(0,0)
 
@@ -33,7 +35,7 @@ func _physics_process(delta):
 		if dir.y < 0 and velocity.y < 0:
 			velocity.y -= 5
 		
-		velocity.y += 10
+		velocity.y += gravity
 	
 	#increase speed for sprinting
 	if is_sprinting:
@@ -41,9 +43,11 @@ func _physics_process(delta):
 	
 	move_and_slide(velocity, Vector2(0, -1))
 	
-	#apply movement to controller
-	get_parent().position += position
-	position = Vector2(0,0)
+	#apply movement to controller or to self
+	var parent = get_parent()
+	if get_parent().get("position"):
+		get_parent().position += position
+		position = Vector2(0,0)
 
 func change_colour(new_colour):
 	colour = new_colour
