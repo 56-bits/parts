@@ -19,6 +19,7 @@ onready var colour = $"/root/globals".settings.colour setget change_colour
 func _ready():
 	$Particles2D.restart()
 	change_colour(colour)
+	position = Vector2(0,-200) 
 
 func _physics_process(delta):
 	
@@ -43,11 +44,6 @@ func _physics_process(delta):
 	
 	move_and_slide(velocity, Vector2(0, -1))
 	
-	#apply movement to controller or to self
-	var parent = get_parent()
-	if get_parent().get("position"):
-		get_parent().position += position
-		position = Vector2(0,0)
 
 func change_colour(new_colour):
 	colour = new_colour

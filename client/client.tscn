@@ -18,7 +18,7 @@ script = ExtResource( 1 )
 process_mode = 1
 wait_time = 0.1
 one_shot = false
-autostart = false
+autostart = true
 
 [node name="client_control" type="Node2D" parent="." index="2"]
 
