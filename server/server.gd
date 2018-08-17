@@ -5,7 +5,7 @@ onready var feedback = $"/root/globals".feedback
 var player_pk = preload("res://client/player/other_player.tscn")
 sync var players = {}
 
-var spawn_point = Vector2(0, -64)
+var spawn_point = Vector2(0, -200)
 
 func _ready():
 	
@@ -53,5 +53,5 @@ remote func register_player(id, inf):
 
 func update_players():
 	for p in $"world/players".get_children():
-		p.get_node("Name").text = players[int(p.name)]["player_name"]
+		p.get_node("character/Name").text = players[int(p.name)]["player_name"]
 		p.get_node("character").colour = players[int(p.name)]["colour"]

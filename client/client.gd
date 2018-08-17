@@ -2,7 +2,7 @@ extends Node
 
 onready var feedback = $"/root/globals".feedback
 
-var spawn_point = Vector2(0, -64)
+var spawn_point = Vector2(0, -200)
 
 var selfPeerID = 0
 
@@ -34,7 +34,7 @@ func _ready():
 	get_tree().connect("connected_to_server", self, "_connected_ok")
 	get_tree().connect("connection_failed", self, "_connected_fail")
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
-	
+
 
 func _peer_connected(id):
 	if id != 1:
@@ -45,7 +45,7 @@ func _peer_connected(id):
 		player.position = spawn_point
 		player.set_network_master(id)
 		$world/players.add_child(player)
-		
+
 
 func _peer_disconnected(id):
 	if id != 1:
@@ -74,14 +74,14 @@ func _server_disconnected():
 	feedback.new_message("server disconnected", "bad")
 	get_tree().change_scene("res://menue/main_menue.tscn")
 	$network_tick.stop()
-	
+
 
 remote func get_player_inf():
 	rpc_id(1, "register_player", selfPeerID, my_info)
 
 remote func update_players():
 	for p in $"world/players".get_children():
-		p.get_node("Name").text = players[int(p.name)]["player_name"]
+		p.get_node("character/Name").text = players[int(p.name)]["player_name"]
 		p.get_node("character").colour = players[int(p.name)]["colour"]
 
 remote func set_world(data):
