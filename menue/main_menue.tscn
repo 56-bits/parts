@@ -2,7 +2,7 @@
 
 [ext_resource path="res://menue/main_menue.gd" type="Script" id=1]
 
-[node name="main_menue" type="Node"]
+[node name="main_menue" type="Node" index="0"]
 
 script = ExtResource( 1 )
 

@@ -176,10 +176,19 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
+[node name="network_tick" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
 [connection signal="item_rmb_selected" from="gui/ItemList" to="server_control" method="_on_ItemList_item_rmb_selected"]
 
 [connection signal="item_selected" from="gui/ItemList" to="server_control" method="_on_ItemList_item_selected"]
 
 [connection signal="toggled" from="gui/VSplitContainer/HSplitContainer/show_player_list" to="gui" method="_on_show_player_list_toggled"]
+
+[connection signal="timeout" from="network_tick" to="." method="_on_network_tick"]
 
 

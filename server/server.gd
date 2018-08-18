@@ -7,7 +7,14 @@ sync var players = {}
 
 var spawn_point = Vector2(0, -200)
 
+var npc_pk = preload("res://characters/npc/npc.tscn")
+
 func _ready():
+	
+	for i in range(3):
+		var n = npc_pk.instance()
+		n.name = str(i)
+		$world/npcs.add_child(n)
 	
 	#start server
 	var server = NetworkedMultiplayerENet.new()
@@ -15,7 +22,9 @@ func _ready():
 	get_tree().set_network_peer(server)
 	
 	feedback.new_message("server created")
-		
+	
+	$network_tick.start()
+	
 	#connect functions
 	get_tree().connect("network_peer_connected", self,"_client_connected"   )
 	get_tree().connect("network_peer_disconnected", self, "_client_disconnected")
@@ -55,3 +64,7 @@ func update_players():
 	for p in $"world/players".get_children():
 		p.get_node("character/Name").text = players[int(p.name)]["player_name"]
 		p.get_node("character").colour = players[int(p.name)]["colour"]
+
+func _on_network_tick():
+	for npc in $world/npcs.get_children():
+		npc._network_tick()

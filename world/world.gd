@@ -1,5 +1,7 @@
 extends Node
 
+var slave_npc = preload("res://characters/npc/slave_npc.tscn")
+
 func _ready():
 	pass
 
@@ -14,6 +16,14 @@ func world_data():
 	
 	data["terrain"] = terrain
 	
+	var npcs = {}
+	
+	if is_network_master():
+		for npc in $npcs.get_children():
+			npcs[npc.name] = npc.name
+		
+		data["npcs"] = npcs
+	
 	return data
 
 func set_world(data):
@@ -22,6 +32,15 @@ func set_world(data):
 	for type in terrain.keys():
 		for pos in terrain[type]:
 			$terrain.set_cellv(pos, type)
+	
+	if !is_network_master():
+		var npcs = data["npcs"]
+		
+		for npc in npcs:
+			var n = slave_npc.instance()
+			n.name = npc
+			$npcs.add_child(n)
+		
 		
 
 sync func edit_terrain(pos, type = 0):
