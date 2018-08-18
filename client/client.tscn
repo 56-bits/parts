@@ -3,9 +3,9 @@
 [ext_resource path="res://client/client.gd" type="Script" id=1]
 [ext_resource path="res://world/world.tscn" type="PackedScene" id=2]
 [ext_resource path="res://server/server_control.gd" type="Script" id=3]
-[ext_resource path="res://client/gui/gui.gd" type="Script" id=4]
+[ext_resource path="res://client/gui/client_gui.gd" type="Script" id=4]
 
-[node name="game" type="Node"]
+[node name="game" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -158,6 +158,147 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
+[node name="menu" type="ColorRect" parent="gui" index="2"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 0.512039 )
+_sections_unfolded = [ "Rect" ]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="gui/menu" index="0"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -63.5
+margin_top = -24.0
+margin_right = 63.5
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="GridContainer" type="GridContainer" parent="gui/menu/VBoxContainer" index="0"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+columns = 2
+
+[node name="colour_laber" type="Label" parent="gui/menu/VBoxContainer/GridContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 3.0
+margin_bottom = 17.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="gui/menu/VBoxContainer/GridContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+align = 1
+color = Color( 1, 1, 1, 1 )
+edit_alpha = true
+
+[node name="exit_button" type="ToolButton" parent="gui/menu/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 127.0
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Exit to Main Menu"
+flat = true
+align = 1
+
+[node name="back_button" type="ToolButton" parent="gui/menu/VBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 26.0
+margin_right = 127.0
+margin_bottom = 48.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Return to game"
+flat = true
+align = 1
+
 [connection signal="timeout" from="network_tick" to="." method="_on_network_tick"]
 
 [connection signal="item_rmb_selected" from="gui/ItemList" to="client_control" method="_on_ItemList_item_rmb_selected"]
@@ -165,5 +306,9 @@ alignment = 0
 [connection signal="item_selected" from="gui/ItemList" to="client_control" method="_on_ItemList_item_selected"]
 
 [connection signal="toggled" from="gui/VSplitContainer/HSplitContainer/show_player_list" to="gui" method="_on_show_player_list_toggled"]
+
+[connection signal="pressed" from="gui/menu/VBoxContainer/exit_button" to="gui" method="_on_exit_button_pressed"]
+
+[connection signal="pressed" from="gui/menu/VBoxContainer/back_button" to="gui" method="_on_back_button_pressed"]
 
 

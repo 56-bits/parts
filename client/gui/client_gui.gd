@@ -23,6 +23,9 @@ func _process(delta):
 		cell_pos.y = -cell_pos.y
 		$VSplitContainer/HSplitContainer/coordinates.text = str(cell_pos)
 		player_list()
+	
+	if Input.is_action_just_pressed("gui_exit"):
+		$menu.visible = !$menu.visible
 
 func player_list():
 	var players = $"../".players
@@ -42,3 +45,9 @@ func player_list():
 
 func _on_show_player_list_toggled(button_pressed):
 	$VSplitContainer/VBoxContainer.visible = button_pressed
+
+func _on_exit_button_pressed():
+	get_tree().change_scene("res://menue/main_menue.tscn")
+
+func _on_back_button_pressed():
+	$menu.visible = false
