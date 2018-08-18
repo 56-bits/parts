@@ -51,6 +51,7 @@ func _peer_disconnected(id):
 	if id != 1:
 		feedback.new_message("peer %s disconnected" % str(id))
 		get_node("world/players/" + str(id)).queue_free()
+		players.erase(id)
 	else: #since the server is id 1, its is equivalent to the server disconnecting
 		_server_disconnected()
 
@@ -61,6 +62,7 @@ func _connected_ok():
 	player.name = String(selfPeerID)
 	player.position = spawn_point
 	player.set_network_master(selfPeerID)
+	player.get_node("character").colour = $"/root/globals".settings.colour
 	$world/players.add_child(player)
 	
 	$network_tick.start()

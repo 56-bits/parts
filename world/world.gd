@@ -20,7 +20,12 @@ func world_data():
 	
 	if is_network_master():
 		for npc in $npcs.get_children():
-			npcs[npc.name] = npc.name
+			var npc_data = {}
+			
+			npc_data["name"] = npc.name
+			npc_data["colour"] = npc.get_node("character").colour
+			
+			npcs[npc.name] = npc_data
 		
 		data["npcs"] = npcs
 	
@@ -35,10 +40,12 @@ func set_world(data):
 	
 	if !is_network_master():
 		var npcs = data["npcs"]
-		
-		for npc in npcs:
+		print(npcs)
+		for id in npcs:
+			var npc = npcs[id]
 			var n = slave_npc.instance()
-			n.name = npc
+			n.name = npc["name"]
+			n.get_node("character").colour = npc["colour"]
 			$npcs.add_child(n)
 		
 		

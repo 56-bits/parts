@@ -14,7 +14,7 @@ var gravity = 10
 var velocity = Vector2(0,0) 
 var dir = Vector2(0,0)
 
-onready var colour = $"/root/globals".settings.colour setget change_colour
+var colour = Color(1,1,1) setget change_colour
 
 func _ready():
 	$Particles2D.restart()

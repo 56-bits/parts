@@ -14,6 +14,7 @@ func _ready():
 	for i in range(3):
 		var n = npc_pk.instance()
 		n.name = str(i)
+		n.get_node("character").colour = Color(randf(),randf(),randf())
 		$world/npcs.add_child(n)
 	
 	#start server
