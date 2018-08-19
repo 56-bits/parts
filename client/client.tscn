@@ -5,7 +5,7 @@
 [ext_resource path="res://server/server_control.gd" type="Script" id=3]
 [ext_resource path="res://client/gui/client_gui.gd" type="Script" id=4]
 
-[node name="game" type="Node"]
+[node name="game" type="Node" index="0"]
 
 script = ExtResource( 1 )
 

@@ -45,6 +45,7 @@ func player_list():
 
 func _on_show_player_list_toggled(button_pressed):
 	$VSplitContainer/VBoxContainer.visible = button_pressed
+	$VSplitContainer/HSplitContainer/show_player_list.release_focus()
 
 func _on_exit_button_pressed():
 	get_tree().change_scene("res://menue/main_menue.tscn")

@@ -4,6 +4,8 @@ var menue_id = 0
 onready var global = $"/root/globals"
 
 func _ready():
+	randomize()
+	
 	$ViewportContainer/VBoxContainer_settings/name_section/LineEdit.text = global.settings.player_name 
 	$ViewportContainer/VBoxContainer_settings/ip_section/LineEdit.text = global.settings.server_ip
 	$ViewportContainer/VBoxContainer_settings/port_section/SpinBox.value = global.settings.port
