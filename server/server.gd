@@ -15,7 +15,7 @@ func _ready():
 		var n = npc_pk.instance()
 		n.name = str(i)
 		n.get_node("character").colour = Color(randf(),randf(),randf())
-		n.get_node("character").position += Vector2(randi()%100,randi()%100) - Vector2(50,50)
+		n.get_node("character").position += Vector2(randi()%50,randi()%50) - Vector2(25,25)
 		$world/npcs.add_child(n)
 	
 	#start server

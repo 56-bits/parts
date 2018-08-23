@@ -21,7 +21,7 @@ func _process(delta):
 			_:
 				pass
 	
-	$character.move(movement)
+	$character.move(movement, sprint)
 
 func _network_tick():
 	rpc("update_movement", $character.position, movement, sprint)
