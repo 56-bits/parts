@@ -44,5 +44,7 @@ gui_exit=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_clear_color=Color( 0.117647, 0.117647, 0.156863, 1 )
 environment/default_environment="res://default_env.tres"
+limits/2d/use_pixel_snap=false

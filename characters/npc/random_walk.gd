@@ -2,9 +2,11 @@ extends Node
 
 var movement = Vector2()
 var sprint = false
+export var position = Vector2()
 
 func _ready():
-	pass
+	if position != Vector2():
+		$character.position = position
 
 func _process(delta):
 	if randf() < .05:

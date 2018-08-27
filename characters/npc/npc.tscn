@@ -6,6 +6,7 @@
 [node name="npc" type="Node"]
 
 script = ExtResource( 1 )
+position = Vector2( 0, 0 )
 
 [node name="character" parent="." index="0" instance=ExtResource( 2 )]
 
