@@ -4,11 +4,9 @@
 [ext_resource path="res://world/terrain/test_set.tres" type="TileSet" id=2]
 
 [node name="world" type="Node"]
-
 script = ExtResource( 1 )
 
-[node name="terrain" type="TileMap" parent="." index="0"]
-
+[node name="terrain" type="TileMap" parent="."]
 z_index = -100
 mode = 0
 tile_set = ExtResource( 2 )
@@ -32,6 +30,5 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="npcs" type="Node" parent="." index="1"]
-
+[node name="npcs" type="Node" parent="."]
 

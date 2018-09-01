@@ -1,17 +1,18 @@
 extends Node
 
-var speed = 100
-var movement = Vector2(0,0)
-var sprint = false
-var position = Vector2() setget set_pos, get_pos
+var position := Vector2() setget set_pos, get_pos
+var movement := Vector2()
+var sprint := false
 
-var is_interpolating = false
-var interpolating_pos = Vector2()
+var is_interpolating := false
+var interpolating_pos := Vector2()
 
 func _ready():
 	pass
 
 func _process(delta):
+	if is_interpolating:
+		interpolate(delta)
 	
 	$character.move(movement, sprint)
 
@@ -30,6 +31,9 @@ slave func update_movement(pos, mov, spr):
 	
 	movement = mov
 	sprint = spr
+
+slave func update_status():
+	pass
 
 func interpolate(delta):
 	var diff = get_pos() - interpolating_pos

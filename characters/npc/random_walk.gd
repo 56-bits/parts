@@ -1,12 +1,7 @@
-extends Node
-
-var movement = Vector2()
-var sprint = false
-export var position = Vector2()
+extends "res://characters/CharacterController.gd"
 
 func _ready():
-	if position != Vector2():
-		$character.position = position
+	._ready()
 
 func _process(delta):
 	if randf() < .05:
@@ -24,6 +19,3 @@ func _process(delta):
 				pass
 	
 	$character.move(movement, sprint)
-
-func _network_tick():
-	rpc("update_movement", $character.position, movement, sprint)

@@ -6,8 +6,8 @@ var spawn_point = Vector2(0, -200)
 
 var selfPeerID = 0
 
-var player_pk = preload("res://client/player/player.tscn")
-var other_player_pk = preload("res://client/player/other_player.tscn")
+var player_pk = preload("res://client/player/Player.tscn")
+var other_player_pk = preload("res://client/player/PlayerSlave.tscn")
 
 sync var players = {}
 
@@ -45,7 +45,6 @@ func _peer_connected(id):
 		player.position = spawn_point
 		player.set_network_master(id)
 		$world/players.add_child(player)
-
 
 func _peer_disconnected(id):
 	if id != 1:

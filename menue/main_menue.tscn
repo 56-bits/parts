@@ -2,7 +2,7 @@
 
 [ext_resource path="res://menue/main_menue.gd" type="Script" id=1]
 [ext_resource path="res://world/terrain/test_set.tres" type="TileSet" id=2]
-[ext_resource path="res://characters/npc/npc.tscn" type="PackedScene" id=3]
+[ext_resource path="res://characters/npc/NPC.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Shader" id=1]
 
@@ -21,14 +21,12 @@ shader = SubResource( 1 )
 shader_param/lod = 1.0
 _sections_unfolded = [ "shader_param" ]
 
-[node name="main_menue" type="Node" index="0"]
-
+[node name="main_menue" type="Node"]
 script = ExtResource( 1 )
 
-[node name="small_world" type="Node" parent="." index="0"]
+[node name="small_world" type="Node" parent="."]
 
-[node name="TileMap" type="TileMap" parent="small_world" index="0"]
-
+[node name="TileMap" type="TileMap" parent="small_world"]
 mode = 0
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
@@ -48,22 +46,21 @@ format = 1
 tile_data = PoolIntArray( 786433, 0, 0, 786462, 0, 0, 851969, 0, 0, 851998, 0, 0, 917505, 0, 0, 917534, 0, 0, 983041, 0, 0, 983070, 0, 0, 1048577, 0, 0, 1048606, 0, 0, 1114113, 0, 0, 1114114, 0, 0, 1114115, 0, 0, 1114116, 0, 0, 1114117, 0, 0, 1114118, 0, 0, 1114119, 0, 0, 1114120, 0, 0, 1114121, 0, 0, 1114122, 0, 0, 1114123, 0, 0, 1114124, 0, 0, 1114125, 0, 0, 1114126, 0, 0, 1114127, 0, 0, 1114128, 0, 0, 1114129, 0, 0, 1114130, 0, 0, 1114131, 0, 0, 1114132, 0, 0, 1114133, 0, 0, 1114134, 0, 0, 1114135, 0, 0, 1114136, 0, 0, 1114137, 0, 0, 1114138, 0, 0, 1114139, 0, 0, 1114140, 0, 0, 1114141, 0, 0, 1114142, 0, 0 )
 _sections_unfolded = [ "Cell" ]
 
-[node name="npcs" type="Node" parent="small_world" index="1"]
+[node name="npcs" type="Node" parent="small_world"]
 
-[node name="npc" parent="small_world/npcs" index="0" instance=ExtResource( 3 )]
+[node name="NPC" parent="small_world/npcs" instance=ExtResource( 3 )]
+position = Vector2( 500, 200 )
 
+[node name="NPC2" parent="small_world/npcs" instance=ExtResource( 3 )]
 position = Vector2( 200, 200 )
 
-[node name="npc2" parent="small_world/npcs" index="1" instance=ExtResource( 3 )]
-
+[node name="NPC3" parent="small_world/npcs" instance=ExtResource( 3 )]
 position = Vector2( 300, 200 )
 
-[node name="npc3" parent="small_world/npcs" index="2" instance=ExtResource( 3 )]
-
+[node name="NPC4" parent="small_world/npcs" instance=ExtResource( 3 )]
 position = Vector2( 400, 200 )
 
-[node name="ColorRect" type="ColorRect" parent="." index="1"]
-
+[node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource( 2 )
 anchor_left = 0.0
 anchor_top = 0.0
@@ -78,8 +75,7 @@ size_flags_vertical = 1
 color = Color( 0, 0, 0, 1 )
 _sections_unfolded = [ "Material" ]
 
-[node name="ViewportContainer" type="ViewportContainer" parent="." index="2"]
-
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -93,8 +89,7 @@ size_flags_vertical = 1
 stretch = false
 stretch_shrink = 1
 
-[node name="VBoxContainer_main" type="VBoxContainer" parent="ViewportContainer" index="0"]
-
+[node name="VBoxContainer_main" type="VBoxContainer" parent="ViewportContainer"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -112,8 +107,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Margin" ]
 
-[node name="ToolButton_server" type="ToolButton" parent="ViewportContainer/VBoxContainer_main" index="0"]
-
+[node name="ToolButton_server" type="ToolButton" parent="ViewportContainer/VBoxContainer_main"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -135,8 +129,7 @@ text = "Host server"
 flat = true
 align = 1
 
-[node name="ToolButton_client" type="ToolButton" parent="ViewportContainer/VBoxContainer_main" index="1"]
-
+[node name="ToolButton_client" type="ToolButton" parent="ViewportContainer/VBoxContainer_main"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -159,8 +152,7 @@ text = "Connect to server"
 flat = true
 align = 1
 
-[node name="ToolButton_settings" type="ToolButton" parent="ViewportContainer/VBoxContainer_main" index="2"]
-
+[node name="ToolButton_settings" type="ToolButton" parent="ViewportContainer/VBoxContainer_main"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -183,8 +175,7 @@ text = "Settings"
 flat = true
 align = 1
 
-[node name="VBoxContainer_settings" type="VBoxContainer" parent="ViewportContainer" index="1"]
-
+[node name="VBoxContainer_settings" type="VBoxContainer" parent="ViewportContainer"]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
@@ -204,8 +195,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Margin", "Rect" ]
 
-[node name="text_size_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="0"]
-
+[node name="text_size_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings"]
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -223,8 +213,7 @@ split_offset = 0
 collapsed = false
 dragger_visibility = 0
 
-[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/text_size_section" index="0"]
-
+[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/text_size_section"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -243,8 +232,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="HSlider_textSize" type="HSlider" parent="ViewportContainer/VBoxContainer_settings/text_size_section" index="1"]
-
+[node name="HSlider_textSize" type="HSlider" parent="ViewportContainer/VBoxContainer_settings/text_size_section"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -267,14 +255,16 @@ page = 0.0
 value = 12.0
 exp_edit = false
 rounded = false
+allow_greater = false
+allow_lesser = false
 editable = true
+scrollable = true
 tick_count = 24
 ticks_on_borders = false
 focus_mode = 2
 _sections_unfolded = [ "Rect" ]
 
-[node name="name_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="1"]
-
+[node name="name_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -291,8 +281,7 @@ split_offset = 0
 collapsed = false
 dragger_visibility = 0
 
-[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/name_section" index="0"]
-
+[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/name_section"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -311,8 +300,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="LineEdit" type="LineEdit" parent="ViewportContainer/VBoxContainer_settings/name_section" index="1"]
-
+[node name="LineEdit" type="LineEdit" parent="ViewportContainer/VBoxContainer_settings/name_section"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -328,15 +316,16 @@ mouse_default_cursor_shape = 1
 size_flags_horizontal = 1
 size_flags_vertical = 1
 text = "Guest"
+secret_character = "*"
 focus_mode = 2
 context_menu_enabled = true
+clear_button_enabled = false
 placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
 
-[node name="colour_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="2"]
-
+[node name="colour_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -354,8 +343,7 @@ split_offset = 0
 collapsed = false
 dragger_visibility = 0
 
-[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/colour_section" index="0"]
-
+[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/colour_section"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -374,8 +362,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="ViewportContainer/VBoxContainer_settings/colour_section" index="1"]
-
+[node name="ColorPickerButton" type="ColorPickerButton" parent="ViewportContainer/VBoxContainer_settings/colour_section"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -399,8 +386,7 @@ align = 1
 color = Color( 1, 1, 1, 1 )
 edit_alpha = false
 
-[node name="ip_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="3"]
-
+[node name="ip_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -418,8 +404,7 @@ split_offset = 0
 collapsed = false
 dragger_visibility = 0
 
-[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/ip_section" index="0"]
-
+[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/ip_section"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -438,8 +423,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="LineEdit" type="LineEdit" parent="ViewportContainer/VBoxContainer_settings/ip_section" index="1"]
-
+[node name="LineEdit" type="LineEdit" parent="ViewportContainer/VBoxContainer_settings/ip_section"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -455,15 +439,16 @@ mouse_default_cursor_shape = 1
 size_flags_horizontal = 1
 size_flags_vertical = 1
 text = "121.216.98.37"
+secret_character = "*"
 focus_mode = 2
 context_menu_enabled = true
+clear_button_enabled = false
 placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
 
-[node name="port_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="4"]
-
+[node name="port_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -481,8 +466,7 @@ split_offset = 0
 collapsed = false
 dragger_visibility = 0
 
-[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/port_section" index="0"]
-
+[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/port_section"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -501,8 +485,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="SpinBox" type="SpinBox" parent="ViewportContainer/VBoxContainer_settings/port_section" index="1"]
-
+[node name="SpinBox" type="SpinBox" parent="ViewportContainer/VBoxContainer_settings/port_section"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -523,12 +506,13 @@ page = 0.0
 value = 8080.0
 exp_edit = false
 rounded = false
+allow_greater = false
+allow_lesser = false
 editable = true
 prefix = ""
 suffix = ""
 
-[node name="player_limit_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings" index="5"]
-
+[node name="player_limit_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -546,8 +530,7 @@ split_offset = 0
 collapsed = false
 dragger_visibility = 0
 
-[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/player_limit_section" index="0"]
-
+[node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/player_limit_section"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -566,8 +549,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="SpinBox" type="SpinBox" parent="ViewportContainer/VBoxContainer_settings/player_limit_section" index="1"]
-
+[node name="SpinBox" type="SpinBox" parent="ViewportContainer/VBoxContainer_settings/player_limit_section"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -588,12 +570,13 @@ page = 0.0
 value = 32.0
 exp_edit = false
 rounded = false
+allow_greater = false
+allow_lesser = false
 editable = true
 prefix = ""
 suffix = ""
 
-[node name="ToolButton_backSettings" type="ToolButton" parent="ViewportContainer/VBoxContainer_settings" index="6"]
-
+[node name="ToolButton_backSettings" type="ToolButton" parent="ViewportContainer/VBoxContainer_settings"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -617,13 +600,7 @@ flat = true
 align = 1
 
 [connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_server" to="." method="_on_ToolButton_server_pressed"]
-
 [connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_client" to="." method="_on_ToolButton_client_pressed"]
-
 [connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_settings" to="." method="_on_ToolButton_settings_pressed"]
-
 [connection signal="text_entered" from="ViewportContainer/VBoxContainer_settings/ip_section/LineEdit" to="." method="_on_LineEdit_ip_text_entered"]
-
 [connection signal="pressed" from="ViewportContainer/VBoxContainer_settings/ToolButton_backSettings" to="." method="_on_ToolButton_backSettings_pressed"]
-
-

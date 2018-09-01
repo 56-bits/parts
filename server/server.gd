@@ -2,12 +2,12 @@ extends Node
 
 onready var feedback = $"/root/globals".feedback
 
-var player_pk = preload("res://client/player/other_player.tscn")
+var player_pk = preload("res://client/player/PlayerSlave.tscn")
 sync var players = {}
 
-var spawn_point = Vector2(0, -200)
+export var spawn_point := Vector2(0, -200)
 
-var npc_pk = preload("res://characters/npc/npc.tscn")
+var npc_pk = preload("res://characters/npc/NPC.tscn")
 
 func _ready():
 	
@@ -15,7 +15,7 @@ func _ready():
 		var n = npc_pk.instance()
 		n.name = str(i)
 		n.get_node("character").colour = Color(randf(),randf(),randf())
-		n.get_node("character").position += Vector2(randi()%50,randi()%50) - Vector2(25,25)
+		n.get_node("character").position = spawn_point
 		$world/npcs.add_child(n)
 	
 	#start server

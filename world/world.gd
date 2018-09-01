@@ -1,6 +1,6 @@
 extends Node
 
-var slave_npc = preload("res://characters/npc/slave_npc.tscn")
+var slave_npc = preload("res://characters/npc/NPCSlave.tscn")
 
 func _ready():
 	pass
@@ -47,16 +47,14 @@ func set_world(data):
 			n.name = npc["name"]
 			n.get_node("character").colour = npc["colour"]
 			$npcs.add_child(n)
-		
-		
 
 sync func edit_terrain(pos, type = 0):
 	var cell = $terrain.world_to_map(pos)
 	if cell.y < 0:
 		$terrain.set_cellv(cell, type)
 
-func get_cell_pos(pos):
+func get_cell_pos(pos) -> Vector2:
 	return $terrain.world_to_map(pos)
 
-func clear_world():
+func clear_world() -> void:
 	$terrain.clear()

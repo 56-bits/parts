@@ -6,19 +6,17 @@
 [ext_resource path="res://client/gui/client_gui.gd" type="Script" id=4]
 
 [node name="game" type="Node"]
-
 script = ExtResource( 1 )
+spawn_point = Vector2( 0, -200 )
 
-[node name="world" parent="." index="0" instance=ExtResource( 2 )]
+[node name="world" parent="." instance=ExtResource( 2 )]
 
-[node name="players" type="Node" parent="world" index="0"]
+[node name="players" type="Node" parent="world"]
 
-[node name="server_control" type="Node2D" parent="." index="1"]
-
+[node name="server_control" type="Node2D" parent="."]
 script = ExtResource( 3 )
 
-[node name="Camera2D" type="Camera2D" parent="." index="2"]
-
+[node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 1
 rotating = false
 current = true
@@ -42,8 +40,7 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 
-[node name="gui" type="CanvasLayer" parent="." index="3"]
-
+[node name="gui" type="CanvasLayer" parent="."]
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -51,8 +48,7 @@ scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 script = ExtResource( 4 )
 
-[node name="ItemList" type="ItemList" parent="gui" index="0"]
-
+[node name="ItemList" type="ItemList" parent="gui"]
 anchor_left = 1.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -77,8 +73,7 @@ icon_mode = 0
 fixed_icon_size = Vector2( 0, 0 )
 _sections_unfolded = [ "Columns", "Icon", "Margin" ]
 
-[node name="VSplitContainer" type="VSplitContainer" parent="gui" index="1"]
-
+[node name="VSplitContainer" type="VSplitContainer" parent="gui"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -95,8 +90,7 @@ split_offset = 0
 collapsed = false
 dragger_visibility = 0
 
-[node name="HSplitContainer" type="HSplitContainer" parent="gui/VSplitContainer" index="0"]
-
+[node name="HSplitContainer" type="HSplitContainer" parent="gui/VSplitContainer"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -113,8 +107,7 @@ split_offset = 0
 collapsed = false
 dragger_visibility = 0
 
-[node name="show_player_list" type="CheckButton" parent="gui/VSplitContainer/HSplitContainer" index="0"]
-
+[node name="show_player_list" type="CheckButton" parent="gui/VSplitContainer/HSplitContainer"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -136,8 +129,7 @@ text = "Player List"
 flat = false
 align = 0
 
-[node name="coordinates" type="Label" parent="gui/VSplitContainer/HSplitContainer" index="1"]
-
+[node name="coordinates" type="Label" parent="gui/VSplitContainer/HSplitContainer"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -158,8 +150,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="gui/VSplitContainer" index="1"]
-
+[node name="VBoxContainer" type="VBoxContainer" parent="gui/VSplitContainer"]
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -176,19 +167,13 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="network_tick" type="Timer" parent="." index="4"]
-
+[node name="network_tick" type="Timer" parent="."]
 process_mode = 1
 wait_time = 0.1
 one_shot = false
 autostart = false
 
 [connection signal="item_rmb_selected" from="gui/ItemList" to="server_control" method="_on_ItemList_item_rmb_selected"]
-
 [connection signal="item_selected" from="gui/ItemList" to="server_control" method="_on_ItemList_item_selected"]
-
 [connection signal="toggled" from="gui/VSplitContainer/HSplitContainer/show_player_list" to="gui" method="_on_show_player_list_toggled"]
-
 [connection signal="timeout" from="network_tick" to="." method="_on_network_tick"]
-
-

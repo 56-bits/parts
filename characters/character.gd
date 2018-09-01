@@ -1,20 +1,20 @@
 extends KinematicBody2D
 
-var speed = 150
+var speed : float = 150
 
-var air_multiplier = 0.75
+var air_multiplier : float = 0.75
 
-var sprint_multiplier = 2
-var is_sprinting = false
+var sprint_multiplier : float = 2
+var is_sprinting : bool = false
 
-var jump_speed = 200
+var jump_speed : float = 200
 
-var gravity = 10
+var gravity : float = 10
 
-var velocity = Vector2(0,0) 
-var dir = Vector2(0,0)
+var velocity : Vector2 = Vector2(0,0) 
+var dir : Vector2 = Vector2(0,0)
 
-var colour = Color(1,1,1) setget change_colour
+var colour : Color = Color(randf(),randf(),randf()) setget change_colour
 
 func _ready():
 	$Particles2D.restart()
@@ -45,10 +45,10 @@ func _physics_process(delta):
 	move_and_slide(velocity, Vector2(0, -1))
 	
 
-func change_colour(new_colour):
+func change_colour(new_colour) -> void:
 	colour = new_colour
 	$Sprite.modulate = new_colour
 
-func move(direction = Vector2(0,0), sprint = false):
+func move(direction = Vector2(0,0), sprint = false) -> void:
 	dir = direction.normalized()
 	is_sprinting = sprint
