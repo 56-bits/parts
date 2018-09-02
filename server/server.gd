@@ -11,11 +11,10 @@ var npc_pk = preload("res://characters/npc/NPC.tscn")
 
 func _ready():
 	
-	for i in range(5):
+	for i in range(round(rand_range(5, 20))):
 		var n = npc_pk.instance()
 		n.name = str(i)
-		n.get_node("character").colour = Color(randf(),randf(),randf())
-		n.get_node("character").position = spawn_point
+		n.position = spawn_point + Vector2(randi()%200, 0)
 		$world/npcs.add_child(n)
 	
 	#start server

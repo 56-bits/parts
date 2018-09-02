@@ -19,7 +19,6 @@ var colour : Color = Color(randf(),randf(),randf()) setget change_colour
 func _ready():
 	$Particles2D.restart()
 	change_colour(colour)
-	position = Vector2(0,-200) 
 
 func _physics_process(delta):
 	
@@ -45,10 +44,10 @@ func _physics_process(delta):
 	move_and_slide(velocity, Vector2(0, -1))
 	
 
-func change_colour(new_colour) -> void:
+func change_colour(new_colour : Color) -> void:
 	colour = new_colour
 	$Sprite.modulate = new_colour
 
-func move(direction = Vector2(0,0), sprint = false) -> void:
+func move(direction : Vector2 = Vector2(0,0), sprint : bool = false) -> void:
 	dir = direction.normalized()
 	is_sprinting = sprint

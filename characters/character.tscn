@@ -49,7 +49,7 @@ _sections_unfolded = [ "Color" ]
 
 [node name="character" type="KinematicBody2D"]
 input_pickable = false
-collision_layer = 1
+collision_layer = 0
 collision_mask = 1
 collision/safe_margin = 0.08
 motion/sync_to_physics = false
