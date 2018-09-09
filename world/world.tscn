@@ -32,3 +32,5 @@ __meta__ = {
 
 [node name="npcs" type="Node" parent="."]
 
+[node name="Structures" type="Node" parent="."]
+

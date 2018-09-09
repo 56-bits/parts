@@ -1,10 +1,10 @@
 extends Node
 
-var movement : Vector2 = Vector2()
-var sprint : bool = false
+var movement := Vector2()
+var sprint := false
 
 export var position : Vector2 setget set_pos, get_pos
-var last_pos : Vector2 = position
+var last_pos := position
 
 func _ready():
 	if position != Vector2():

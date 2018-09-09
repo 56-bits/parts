@@ -27,6 +27,6 @@ func refresh():
 		
 		add_text(message.txt)
 
-func new_message(message, type = ""):
+func new_message(message : String, type = ""):
 	queue.push_back({txt = message, status = type})
 	refresh()

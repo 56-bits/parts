@@ -21,7 +21,7 @@ func _ready():
 	change_colour(colour)
 
 func _physics_process(delta):
-	
+		
 	if is_on_floor():
 		velocity.x = dir.x * speed
 		velocity.y = 0
@@ -41,7 +41,11 @@ func _physics_process(delta):
 	if is_sprinting:
 		velocity.x *= sprint_multiplier
 	
-	move_and_slide(velocity, Vector2(0, -1))
+	#velocity += get_floor_velocity()
+	if dir.y < 0:
+		move_and_slide(velocity, Vector2(0, -1))
+	else:
+		move_and_slide_with_snap(velocity, Vector2(0, 10), Vector2(0, -1))
 	
 
 func change_colour(new_colour : Color) -> void:

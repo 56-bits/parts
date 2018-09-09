@@ -9,6 +9,12 @@
 script = ExtResource( 1 )
 spawn_point = Vector2( 0, -200 )
 
+[node name="network_tick" type="Timer" parent="."]
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
 [node name="world" parent="." instance=ExtResource( 2 )]
 
 [node name="players" type="Node" parent="world"]
@@ -167,13 +173,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="network_tick" type="Timer" parent="."]
-process_mode = 1
-wait_time = 0.1
-one_shot = false
-autostart = false
-
+[connection signal="timeout" from="network_tick" to="." method="_on_network_tick"]
 [connection signal="item_rmb_selected" from="gui/ItemList" to="server_control" method="_on_ItemList_item_rmb_selected"]
 [connection signal="item_selected" from="gui/ItemList" to="server_control" method="_on_ItemList_item_selected"]
 [connection signal="toggled" from="gui/VSplitContainer/HSplitContainer/show_player_list" to="gui" method="_on_show_player_list_toggled"]
-[connection signal="timeout" from="network_tick" to="." method="_on_network_tick"]

@@ -2,6 +2,7 @@ extends Node
 
 var menu_id : int = 0 setget menu_change
 onready var global = $"/root/globals"
+onready var feedback = globals.feedback
 
 func _ready():
 	randomize()
@@ -37,6 +38,10 @@ func _on_ToolButton_client_pressed():
 func _on_ToolButton_cinematic_pressed():
 	get_tree().change_scene("res://cinematics/TestCinematic.tscn")
 
+func _on_ToolButton_QuadTree_pressed():
+	get_tree().change_scene("res://world/quadtree/qt.tscn")
+	feedback.new_message("Press esc. to exit")
+
 func _on_ToolButton_settings_pressed():
 	self.menu_id = 1
 
@@ -51,8 +56,8 @@ func _on_ToolButton_backSettings_pressed():
 	global.settings.colour = $ViewportContainer/VBoxContainer_settings/colour_section/ColorPickerButton.color
 
 func _on_LineEdit_ip_text_entered(new_text):
-	var feedback = $"/root/globals".feedback
 	if new_text.is_valid_ip_address():
 		feedback.new_message("IP adress is valid", "good")
 	else:
 		feedback.new_message("IP adress is invalid", "bad")
+

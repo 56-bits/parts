@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node2D
+
+var qt
+
+func _ready():
+	var s = pow(2, 10)
+	qt = QuadTree.new(get_viewport_rect().size/2, s)
+	add_child(qt) 
+
+
+func _process(delta):
+	
+	if Input.is_action_pressed(\"gui_exit\"):
+		get_tree().change_scene(\"res://menue/main_menue.tscn\")
+	
+	if Input.is_key_pressed(KEY_Q):
+		$Camera2D.zoom /= 1.5
+	if Input.is_key_pressed(KEY_E):
+		$Camera2D.zoom *= 1.5
+	
+	if Input.is_action_pressed(\"move_right\"):
+		$Camera2D.position.x += 50 * $Camera2D.zoom.x
+	if Input.is_action_pressed(\"move_left\"):
+		$Camera2D.position.x -= 50 * $Camera2D.zoom.x
+	if Input.is_action_pressed(\"move_up\"):
+		$Camera2D.position.y -= 50 * $Camera2D.zoom.y
+	if Input.is_action_pressed(\"move_down\"):
+		$Camera2D.position.y += 50 * $Camera2D.zoom.y
+	
+	var mpos = get_viewport().get_mouse_position()*$Camera2D.zoom + $Camera2D.position - get_viewport_rect().size/2*$Camera2D.zoom
+	if Input.is_action_pressed(\"primary_click\"):
+		qt.insert_data(mpos, 1)
+		qt.update()
+	if Input.is_action_pressed(\"secondary_click\"):
+		qt.insert_data(mpos, 0)
+		qt.update()"
+
+[node name="Node" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+

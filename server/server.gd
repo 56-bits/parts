@@ -42,13 +42,9 @@ func _client_connected(id):
 	
 	#get data from player
 	rpc_id(id, "get_player_inf")
-	
-	#send world data to player
-	var data = $world.world_data()
-	rpc_id(id, "set_world", data)
 
 func _client_disconnected(id):
-	feedback.new_message("client %s disconnected" % str(id))
+	feedback.new_message("client %s aka %s disconnected" % [str(id), players[id]["player_name"]])
 	
 	get_node("world/players/" + str(id)).queue_free()
 	
@@ -56,10 +52,15 @@ func _client_disconnected(id):
 
 remote func register_player(id, inf):
 	players[id] = inf
-	feedback.new_message(inf["player_name"] + " has registered")
+	feedback.new_message(inf["player_name"] + " has registered", "good")
 	rset("players", players)
 	rpc("update_players")
 	update_players()
+
+remote func sync_world(id : int):
+	var data = $world.world_data()
+	feedback.new_message("%s aka %s requested a resync" % [id, players[id]["player_name"]])
+	rpc_id(id, "recieve_sync", data)
 
 func update_players():
 	for p in $"world/players".get_children():

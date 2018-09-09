@@ -12,12 +12,12 @@ func _ready():
 
 func _process(delta):
 	if is_interpolating:
-		interpolate(delta)
+		interpolate()
 	
 	$character.move(movement, sprint)
 
-slave func update_movement(pos, mov, spr):
-	var diff = get_pos() - pos
+slave func update_movement(pos : Vector2, mov : Vector2, spr : bool):
+	var diff := get_pos() - pos
 	
 	if diff.length() < 5:
 		set_pos(pos)
@@ -35,8 +35,8 @@ slave func update_movement(pos, mov, spr):
 slave func update_status():
 	pass
 
-func interpolate(delta):
-	var diff = get_pos() - interpolating_pos
+func interpolate() -> void:
+	var diff := get_pos() - interpolating_pos
 	
 	if diff.length() < 5:
 		diff /= 4
@@ -44,8 +44,8 @@ func interpolate(delta):
 	else:
 		is_interpolating = false
 
-func set_pos(pos):
+func set_pos(pos : Vector2) -> void:
 	$character.position = pos
 
-func get_pos():
+func get_pos() -> Vector2:
 	return $character.position

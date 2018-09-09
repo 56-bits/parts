@@ -25,15 +25,15 @@ func _ready():
 	feedback.new_message("connecting to server...")
 	
 	selfPeerID = get_tree().get_network_unique_id()
-	
-	$world.clear_world()
-	
+		
 	#connect functions
+	
 	get_tree().connect("network_peer_connected", self, "_peer_connected")
 	get_tree().connect("network_peer_disconnected", self, "_peer_disconnected")
 	get_tree().connect("connected_to_server", self, "_connected_ok")
 	get_tree().connect("connection_failed", self, "_connected_fail")
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
+	
 
 
 func _peer_connected(id):
@@ -48,7 +48,7 @@ func _peer_connected(id):
 
 func _peer_disconnected(id):
 	if id != 1:
-		feedback.new_message("peer %s disconnected" % str(id))
+		feedback.new_message("peer %s disconnected" % players[id]["player_name"])
 		get_node("world/players/" + str(id)).queue_free()
 		players.erase(id)
 	else: #since the server is id 1, its is equivalent to the server disconnecting
@@ -76,18 +76,24 @@ func _server_disconnected():
 	get_tree().change_scene("res://menue/main_menue.tscn")
 	$network_tick.stop()
 
-
 remote func get_player_inf():
 	rpc_id(1, "register_player", selfPeerID, my_info)
+	request_sync()
 
 remote func update_players():
 	for p in $"world/players".get_children():
 		p.get_node("character/Name").text = players[int(p.name)]["player_name"]
 		p.get_node("character").colour = players[int(p.name)]["colour"]
 
-remote func set_world(data):
+# network bulk synchronisation
+func request_sync():
+	rpc_id(1, "sync_world", selfPeerID)
+	feedback.new_message("Resync requested")
+
+remote func recieve_sync(data):
 	$world.clear_world()
 	$world.set_world(data)
+	feedback.new_message("Resync successfull", "good")
 
 func _on_network_tick(): # is a signal from the timer
 	get_node("world/players/%s" % str(selfPeerID))._network_tick()

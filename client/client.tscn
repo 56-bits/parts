@@ -8,15 +8,15 @@
 [node name="game" type="Node"]
 script = ExtResource( 1 )
 
-[node name="world" parent="." instance=ExtResource( 2 )]
-
-[node name="players" type="Node" parent="world"]
-
 [node name="network_tick" type="Timer" parent="."]
 process_mode = 1
 wait_time = 0.1
 one_shot = false
 autostart = false
+
+[node name="world" parent="." instance=ExtResource( 2 )]
+
+[node name="players" type="Node" parent="world"]
 
 [node name="client_control" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -149,6 +149,7 @@ size_flags_vertical = 1
 alignment = 0
 
 [node name="menu" type="ColorRect" parent="gui"]
+editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -237,6 +238,29 @@ align = 1
 color = Color( 1, 1, 1, 1 )
 edit_alpha = true
 
+[node name="resync_button" type="ToolButton" parent="gui/menu/VBoxContainer"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 26.0
+margin_right = 127.0
+margin_bottom = 48.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Resync Game"
+flat = true
+align = 1
+
 [node name="exit_button" type="ToolButton" parent="gui/menu/VBoxContainer"]
 anchor_left = 0.0
 anchor_top = 0.0
@@ -286,5 +310,6 @@ align = 1
 [connection signal="item_rmb_selected" from="gui/ItemList" to="client_control" method="_on_ItemList_item_rmb_selected"]
 [connection signal="item_selected" from="gui/ItemList" to="client_control" method="_on_ItemList_item_selected"]
 [connection signal="toggled" from="gui/VSplitContainer/HSplitContainer/show_player_list" to="gui" method="_on_show_player_list_toggled"]
+[connection signal="pressed" from="gui/menu/VBoxContainer/resync_button" to="gui" method="_on_resync_button_pressed"]
 [connection signal="pressed" from="gui/menu/VBoxContainer/exit_button" to="gui" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="gui/menu/VBoxContainer/back_button" to="gui" method="_on_back_button_pressed"]

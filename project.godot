@@ -8,11 +8,17 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "QuadTree",
+"language": "GDScript",
+"path": "res://world/quadtree/QuadTree.gd"
+} ]
 _global_script_class_icons={
 "CharacterController": "",
 "Npc": "",
 "Player": "",
+"QuadTree": "",
 "npc": ""
 }
 
