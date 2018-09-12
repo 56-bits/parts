@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 class_name QuadTree
 
@@ -110,40 +110,54 @@ func delete():
 	queue_free()
 
 func refresh():
-	if is_leaf and !has_node("rep") && data == 1:
-		var rep = StaticBody2D.new()
-		rep.name = "rep"
-		
-		var rect = RectangleShape2D.new()
-		rect.extents = bounding_box.size/2
-		
-		var col = CollisionShape2D.new()
-		col.shape = rect
-		col.position = (bounding_box.position + bounding_box.end) / 2
-		rep.add_child(col)
-		
-		add_child(rep)
+	if is_leaf and data != 0:
+		if !has_node("rep"):
+			var rep = StaticBody2D.new()
+			rep.name = "rep"
+			rep.position = (bounding_box.position + bounding_box.end) / 2
+
+			var rect = RectangleShape2D.new()
+			rect.extents = bounding_box.size/2
+
+			var col = CollisionShape2D.new()
+			col.shape = rect
+			rep.add_child(col)
+
+			var spr = ColorRect.new()
+			spr.rect_size = bounding_box.size
+			spr.rect_position = -bounding_box.size/2
+			spr.name = "spr"
+			
+			match data:
+				1:
+					spr.color = Color(.3, .6, .4)
+				_:
+					spr.color = Color(.5,.5,.5)
+			
+			rep.add_child(spr)
+			
+			add_child(rep)
 	else:
 		if has_node("rep"):
 			get_node("rep").free()
-	update()
+	#update()
 
-func _draw():
-#	var label = Label.new()
-#	var font = label.get_font("")
-#	label.free()
-#	var c = get_child_count()
-#	if c > 0:
-#		draw_string(font,(bounding_box.position + bounding_box.end)/2, str(get_child_count())) 
-	if is_leaf:
-		match data:
-			1:
-				draw_rect(bounding_box, Color(.3, .6, .4), true)
-				#draw_rect(bounding_box, Color(1,1,1), false)
-			0:
-				pass#draw_rect(bounding_box, Color(1,1,1), false)#
-#	else:
-#		tr.update()
-#		tl.update()
-#		br.update()
-#		bl.update()
+#func _draw():
+##	var label = Label.new()
+##	var font = label.get_font("")
+##	label.free()
+##	var c = get_child_count()
+##	if c > 0:
+##		draw_string(font,(bounding_box.position + bounding_box.end)/2, str(get_child_count())) 
+#	if is_leaf:
+#		match data:
+#			1:
+#				draw_rect(bounding_box, Color(.3, .6, .4), true)
+#				#draw_rect(bounding_box, Color(1,1,1), false)
+#			0:
+#				pass#draw_rect(bounding_box, Color(1,1,1), false)#
+##	else:
+##		tr.update()
+##		tl.update()
+##		br.update()
+##		bl.update()
