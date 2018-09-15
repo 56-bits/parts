@@ -14,7 +14,7 @@ func _ready():
 
 func _process(delta):
 	
-	if Input.is_key_pressed(KEY_CONTROL) and Input.is_action_pressed("primary_click"):
+	if Input.is_action_pressed("ctrl") and Input.is_action_pressed("primary_click"):
 		m_col.monitoring = true
 	else:
 		m_col.monitoring = false
