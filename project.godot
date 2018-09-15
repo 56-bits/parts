@@ -9,16 +9,34 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Camera2D",
+"class": "ControlledCamera2D",
+"language": "GDScript",
+"path": "res://experiments/ControlledCamera2D.gd"
+}, {
+"base": "Node2D",
+"class": "Controller2D",
+"language": "GDScript",
+"path": "res://experiments/Controller2D.gd"
+}, {
 "base": "Node",
 "class": "QuadTree",
 "language": "GDScript",
-"path": "res://world/quadtree/QuadTree.gd"
+"path": "res://experiments/quadtree/QuadTree.gd"
+}, {
+"base": "TileMap",
+"class": "Terrain",
+"language": "GDScript",
+"path": "res://world/structures/terrain.gd"
 } ]
 _global_script_class_icons={
 "CharacterController": "",
+"ControlledCamera2D": "",
+"Controller2D": "",
 "Npc": "",
 "Player": "",
 "QuadTree": "",
+"Terrain": "",
 "npc": ""
 }
 

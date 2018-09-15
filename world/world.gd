@@ -6,6 +6,7 @@ func _ready():
 	pass
 
 func world_data():
+	
 	var data = {}
 	
 	var terrain = {}
@@ -36,7 +37,7 @@ func world_data():
 	data["structures"] = structures
 	return data
 
-func set_world(data):
+func set_world(data):	
 	var terrain = data["terrain"]
 	
 	for type in terrain.keys():
@@ -53,13 +54,19 @@ func set_world(data):
 			$npcs.add_child(n)
 	
 	var structures = data["structures"]
+	print(structures)
 	for struct in structures:
 		$Structures.get_node(struct).set_state(structures[struct])
 
 sync func edit_terrain(pos, type = 0):
 	var cell = $terrain.world_to_map(pos)
-	if cell.y < 0:
-		$terrain.set_cellv(cell, type)
+	$terrain.set_cellv(cell, type)
+
+func _network_tick():
+	for c in $Structures.get_children():
+		c._network_tick()
+	for npc in $npcs.get_children():
+		npc._network_tick()
 
 func get_cell_pos(pos) -> Vector2:
 	return $terrain.world_to_map(pos)

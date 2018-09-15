@@ -18,16 +18,6 @@ func _process(delta):
 	if alt_click:
 		$"../world".rpc("edit_terrain", get_local_mouse_position(), alt_tile_type)
 	
-	if get_tree().is_network_server():
-		#camera controll
-		if Input.is_action_pressed("move_right"):
-			$"../Camera2D".position.x += 30
-		if Input.is_action_pressed("move_left"):
-			$"../Camera2D".position.x -= 30
-		if Input.is_action_pressed("move_up"):
-			$"../Camera2D".position.y -= 30
-		if Input.is_action_pressed("move_down"):
-			$"../Camera2D".position.y += 30
 
 func _unhandled_input(event):
 	if event.is_action_pressed("primary_click"):

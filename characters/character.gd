@@ -11,8 +11,10 @@ var jump_speed : float = 200
 
 var gravity : float = 10
 
-var velocity : Vector2 = Vector2(0,0) 
-var dir : Vector2 = Vector2(0,0)
+var velocity : Vector2 = Vector2() 
+var dir : Vector2 = Vector2()
+
+var last_floor_vel : Vector2 = Vector2()
 
 var colour : Color = Color(randf(),randf(),randf()) setget change_colour
 
@@ -29,6 +31,8 @@ func _physics_process(delta):
 		if dir.y < 0:
 			velocity.y = -jump_speed
 		
+		last_floor_vel = get_floor_velocity()
+		
 	else:
 		velocity.x = dir.x * speed * air_multiplier
 		
@@ -36,11 +40,13 @@ func _physics_process(delta):
 			velocity.y -= 5
 		
 		velocity.y += gravity
+		
+		velocity.x += last_floor_vel.x
 	
 	#increase speed for sprinting
 	if is_sprinting:
 		velocity.x *= sprint_multiplier
-	
+		
 	#velocity += get_floor_velocity()
 	if dir.y < 0:
 		move_and_slide(velocity, Vector2(0, -1))

@@ -11,7 +11,7 @@ var npc_pk = preload("res://characters/npc/NPC.tscn")
 
 func _ready():
 	
-	for i in range(round(rand_range(5, 20))):
+	for i in range(3):#round(rand_range(5, 20))):
 		var n = npc_pk.instance()
 		n.name = str(i)
 		n.position = spawn_point + Vector2(randi()%200, 0)
@@ -68,5 +68,4 @@ func update_players():
 		p.get_node("character").colour = players[int(p.name)]["colour"]
 
 func _on_network_tick():
-	for npc in $world/npcs.get_children():
-		npc._network_tick()
+	$world._network_tick()

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://server/server.gd" type="Script" id=1]
 [ext_resource path="res://world/world.tscn" type="PackedScene" id=2]
 [ext_resource path="res://server/server_control.gd" type="Script" id=3]
-[ext_resource path="res://client/gui/client_gui.gd" type="Script" id=4]
+[ext_resource path="res://experiments/ControlledCamera2D.gd" type="Script" id=4]
+[ext_resource path="res://client/gui/client_gui.gd" type="Script" id=5]
 
 [node name="game" type="Node"]
 script = ExtResource( 1 )
@@ -45,6 +46,9 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
+script = ExtResource( 4 )
+speed = 1000
+zoom_rate = 1.1
 
 [node name="gui" type="CanvasLayer" parent="."]
 layer = 1
@@ -52,7 +56,7 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 
 [node name="ItemList" type="ItemList" parent="gui"]
 anchor_left = 1.0

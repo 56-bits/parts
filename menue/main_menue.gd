@@ -18,11 +18,17 @@ func menu_change(new_id):
 	
 	match menu_id:
 		0 :
+			for c in $ViewportContainer.get_children():
+				c.hide()
 			$ViewportContainer/VBoxContainer_main.show()
-			$ViewportContainer/VBoxContainer_settings.hide()
 		1 :
-			$ViewportContainer/VBoxContainer_main.hide()
+			for c in $ViewportContainer.get_children():
+				c.hide()
 			$ViewportContainer/VBoxContainer_settings.show()
+		2 :
+			for c in $ViewportContainer.get_children():
+				c.hide()
+			$ViewportContainer/VBoxContainer_experiments.show()
 		_ :
 			menu_id = 0
 
@@ -35,15 +41,14 @@ func _on_ToolButton_server_pressed():
 func _on_ToolButton_client_pressed():
 	get_tree().change_scene("res://client/client.tscn")
 
-func _on_ToolButton_cinematic_pressed():
-	get_tree().change_scene("res://cinematics/TestCinematic.tscn")
-
-func _on_ToolButton_QuadTree_pressed():
-	get_tree().change_scene("res://world/quadtree/qt.tscn")
-	feedback.new_message("Press esc. to exit")
+func _on_ToolButton_experiments_pressed():
+	self.menu_id = 2
 
 func _on_ToolButton_settings_pressed():
 	self.menu_id = 1
+
+func _on_ToolButton_exit_pressed():
+	get_tree().quit()
 
 ## settings
 func _on_ToolButton_backSettings_pressed():
@@ -61,3 +66,14 @@ func _on_LineEdit_ip_text_entered(new_text):
 	else:
 		feedback.new_message("IP adress is invalid", "bad")
 
+## experiments
+
+func _on_ToolButton_cinematic_pressed():
+	get_tree().change_scene("res://experiments/cinematic/TestCinematic.tscn")
+
+func _on_ToolButton_QuadTree_pressed():
+	get_tree().change_scene("res://experiments/quadtree/qt.tscn")
+	feedback.new_message("Press esc. to exit")
+
+func _on_ToolButton_backExperiments_pressed():
+	self.menu_id = 0

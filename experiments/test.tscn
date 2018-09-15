@@ -1,0 +1,181 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://experiments/Controller2D.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 20, 20 )
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 80, 20 )
+
+[node name="test" type="Node2D"]
+position = Vector2( 334.831, 270.854 )
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2( -3.58746, -49.0288 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+physics_material_override = null
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="RigidBody2D"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.898039, 0.0862745, 0.0862745, 1 )
+_sections_unfolded = [ "Rect" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource( 2 )
+_sections_unfolded = [ "shape" ]
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+position = Vector2( 222.423, -54.41 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+physics_material_override = null
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="RigidBody2D2"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.54902, 0.0862745, 0.898039, 1 )
+_sections_unfolded = [ "Rect" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+shape = SubResource( 2 )
+_sections_unfolded = [ "shape" ]
+
+[node name="Controller2D" type="Node2D" parent="."]
+script = ExtResource( 1 )
+speed = null
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="Controller2D"]
+position = Vector2( 218.238, -1.1958 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+motion/sync_to_physics = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Controller2D/KinematicBody2D"]
+shape = SubResource( 1 )
+_sections_unfolded = [ "shape" ]
+
+[node name="ColorRect2" type="ColorRect" parent="Controller2D/KinematicBody2D"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -80.0
+margin_top = -20.0
+margin_right = 80.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.141176, 0.462745, 0.74902, 1 )
+_sections_unfolded = [ "Rect" ]
+
+[node name="Controller2D2" type="Node2D" parent="."]
+script = ExtResource( 1 )
+speed = null
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Controller2D2"]
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+physics_material_override = null
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller2D2/StaticBody2D"]
+shape = SubResource( 1 )
+_sections_unfolded = [ "shape" ]
+
+[node name="ColorRect" type="ColorRect" parent="Controller2D2/StaticBody2D"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -80.0
+margin_top = -20.0
+margin_right = 80.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.32549, 0.654902, 0.203922, 1 )
+_sections_unfolded = [ "Rect" ]
+
