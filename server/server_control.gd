@@ -7,9 +7,7 @@ var click = false
 var alt_click = false
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+	$"../gui/ItemList".connect("item_selected", self, "_on_ItemList_item_selected")
 
 func _process(delta):
 	

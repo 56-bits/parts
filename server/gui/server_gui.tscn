@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://menue/gui.tscn" type="PackedScene" id=1]
+[ext_resource path="res://server/server_gui.gd" type="Script" id=2]
+
+[node name="server_gui" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+_sections_unfolded = [ "Script" ]
+

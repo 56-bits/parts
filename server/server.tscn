@@ -4,7 +4,7 @@
 [ext_resource path="res://world/world.tscn" type="PackedScene" id=2]
 [ext_resource path="res://server/server_control.gd" type="Script" id=3]
 [ext_resource path="res://experiments/ControlledCamera2D.gd" type="Script" id=4]
-[ext_resource path="res://client/gui/client_gui.gd" type="Script" id=5]
+[ext_resource path="res://server/gui/server_gui.tscn" type="PackedScene" id=5]
 
 [node name="game" type="Node"]
 script = ExtResource( 1 )
@@ -50,134 +50,6 @@ script = ExtResource( 4 )
 speed = 1000
 zoom_rate = 1.1
 
-[node name="gui" type="CanvasLayer" parent="."]
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-script = ExtResource( 5 )
-
-[node name="ItemList" type="ItemList" parent="gui"]
-anchor_left = 1.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = -48.0
-grow_horizontal = 0
-rect_min_size = Vector2( 48, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-items = [  ]
-select_mode = 0
-allow_reselect = true
-allow_rmb_select = true
-auto_height = true
-fixed_column_width = 32
-icon_mode = 0
-fixed_icon_size = Vector2( 0, 0 )
-_sections_unfolded = [ "Columns", "Icon", "Margin" ]
-
-[node name="VSplitContainer" type="VSplitContainer" parent="gui"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 40.0
-margin_bottom = 40.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-split_offset = 0
-collapsed = false
-dragger_visibility = 0
-
-[node name="HSplitContainer" type="HSplitContainer" parent="gui/VSplitContainer"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 190.0
-margin_bottom = 40.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-split_offset = 0
-collapsed = false
-dragger_visibility = 0
-
-[node name="show_player_list" type="CheckButton" parent="gui/VSplitContainer/HSplitContainer"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 146.0
-margin_bottom = 40.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Player List"
-flat = false
-align = 0
-
-[node name="coordinates" type="Label" parent="gui/VSplitContainer/HSplitContainer"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 158.0
-margin_top = 13.0
-margin_right = 190.0
-margin_bottom = 27.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "(0, 0)"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="gui/VSplitContainer"]
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 52.0
-margin_right = 190.0
-margin_bottom = 52.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
+[node name="gui" parent="." instance=ExtResource( 5 )]
 
 [connection signal="timeout" from="network_tick" to="." method="_on_network_tick"]
-[connection signal="item_rmb_selected" from="gui/ItemList" to="server_control" method="_on_ItemList_item_rmb_selected"]
-[connection signal="item_selected" from="gui/ItemList" to="server_control" method="_on_ItemList_item_selected"]
-[connection signal="toggled" from="gui/VSplitContainer/HSplitContainer/show_player_list" to="gui" method="_on_show_player_list_toggled"]
