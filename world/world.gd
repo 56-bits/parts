@@ -75,6 +75,7 @@ sync func create_island(pos, spd, act):
 	i.speed = spd
 	i.position = pos
 	$Structures.add_child(i)
+	i.name = str($Structures.get_child_count())
 
 func get_cell_pos(pos) -> Vector2:
 	return $terrain.world_to_map(pos)
