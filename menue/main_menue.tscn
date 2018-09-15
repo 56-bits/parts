@@ -739,7 +739,7 @@ align = 1
 [connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_server" to="." method="_on_ToolButton_server_pressed"]
 [connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_client" to="." method="_on_ToolButton_client_pressed"]
 [connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_experiments" to="." method="_on_ToolButton_experiments_pressed"]
-[connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_settings" to="." method="_on_ToolButton_QuadTree_pressed"]
+[connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_settings" to="." method="_on_ToolButton_settings_pressed"]
 [connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_exit" to="." method="_on_ToolButton_exit_pressed"]
 [connection signal="text_entered" from="ViewportContainer/VBoxContainer_settings/ip_section/LineEdit" to="." method="_on_LineEdit_ip_text_entered"]
 [connection signal="pressed" from="ViewportContainer/VBoxContainer_settings/ToolButton_backSettings" to="." method="_on_ToolButton_backSettings_pressed"]
