@@ -1,7 +1,7 @@
 extends Terrain
 
 export var is_active : bool = true
-export var speed : float = 2
+export var speed : float = .1
 var direction : float = 0
 
 func _ready():

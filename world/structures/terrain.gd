@@ -2,8 +2,8 @@ extends TileMap
 class_name Terrain
 
 sync func edit_terrain(pos, type = 0):
-	var cell = $terrain.world_to_map(pos)
-	$terrain.set_cellv(cell, type)
+	var cell = world_to_map(pos)
+	set_cellv(cell, type)
 
 func get_state() -> Dictionary:
 	var state = {}

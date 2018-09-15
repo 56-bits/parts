@@ -1,6 +1,7 @@
 extends Node
 
 var slave_npc = preload("res://characters/npc/NPCSlave.tscn")
+var island = preload("res://world/structures/FloatingIsland.tscn")
 
 func _ready():
 	pass
@@ -67,6 +68,13 @@ func _network_tick():
 		c._network_tick()
 	for npc in $npcs.get_children():
 		npc._network_tick()
+
+sync func create_island(pos, spd, act):
+	var i = island.instance()
+	i.is_active = act
+	i.speed = spd
+	i.position = pos
+	$Structures.add_child(i)
 
 func get_cell_pos(pos) -> Vector2:
 	return $terrain.world_to_map(pos)
