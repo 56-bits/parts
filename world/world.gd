@@ -21,12 +21,14 @@ func world_data():
 	var npcs = {}
 	
 	for npc in $npcs.get_children():
-		var npc_data = {}
+#		var npc_data = {}
+#
+#		npc_data["name"] = npc.name
+#		npc_data["colour"] = npc.get_node("character").colour
+#
+#		npcs[npc.name] = npc_data
 		
-		npc_data["name"] = npc.name
-		npc_data["colour"] = npc.get_node("character").colour
-		
-		npcs[npc.name] = npc_data
+		npcs[npc.name] = npc.get_state()
 	
 	data["npcs"] = npcs
 	
@@ -50,14 +52,19 @@ func set_world(data):
 		for id in npcs:
 			var npc = npcs[id]
 			var n = slave_npc.instance()
-			n.name = npc["name"]
-			n.get_node("character").colour = npc["colour"]
+#			n.name = npc["name"]
+#			n.get_node("character").colour = npc["colour"]
+			n.set_state(npc)
 			$npcs.add_child(n)
 	
 	var structures = data["structures"]
-	print(structures)
-	for struct in structures:
-		$Structures.get_node(struct).set_state(structures[struct])
+	for id in structures:
+		var struct = structures[id]
+		var s = island.instance()
+		s.set_state(struct)
+		add_child(s)
+#	for struct in structures:
+#		$Structures.get_node(struct).set_state(structures[struct])
 
 sync func edit_terrain(pos, type = 0):
 	var cell = $terrain.world_to_map(pos)
@@ -82,3 +89,7 @@ func get_cell_pos(pos) -> Vector2:
 
 func clear_world() -> void:
 	$terrain.clear()
+	for c in $Structures.get_children():
+		c.queue_free()
+	for c in $npcs.get_children():
+		c.queue_free()

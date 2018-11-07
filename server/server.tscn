@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 1, 1 )
+extents = Vector2( 4, 4 )
 
 [node name="game" type="Node"]
 script = ExtResource( 1 )
@@ -65,7 +65,6 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-_sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_col"]
 shape = SubResource( 1 )

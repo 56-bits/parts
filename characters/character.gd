@@ -19,7 +19,6 @@ var last_floor_vel : Vector2 = Vector2()
 var colour : Color = Color(randf(),randf(),randf()) setget change_colour
 
 func _ready():
-	$Particles2D.restart()
 	change_colour(colour)
 
 func _physics_process(delta):

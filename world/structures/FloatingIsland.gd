@@ -36,7 +36,6 @@ func get_state() -> Dictionary:
 	state["pos"] = position
 	state["dir"] = direction
 	state["spd"] = speed
-	state["name"] = name
 	
 	return state
 

@@ -19,7 +19,13 @@ func _ready():
 	
 	#start server
 	var server = NetworkedMultiplayerENet.new()
-	server.create_server($"/root/globals".settings.port, $"/root/globals".settings.player_limit)
+		
+	var status = server.create_server($"/root/globals".settings.port, $"/root/globals".settings.player_limit)
+	
+	if status == ERR_CANT_CREATE:
+		feedback.new_message("Server could not be created", "bad")
+		get_tree().change_scene("res://menue/main_menue.tscn")
+	
 	get_tree().set_network_peer(server)
 	
 	feedback.new_message("server created")

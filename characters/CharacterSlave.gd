@@ -44,6 +44,11 @@ func interpolate() -> void:
 	else:
 		is_interpolating = false
 
+func set_state(state : Dictionary):
+	name = state["id"]
+	$character/Name.text = state["name"]
+	$character.colour = state["colour"]
+
 func set_pos(pos : Vector2) -> void:
 	$character.position = pos
 

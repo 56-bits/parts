@@ -1,7 +1,11 @@
+tool
 extends "res://characters/CharacterController.gd"
 
 func _ready():
 	._ready()
+	if Engine.is_editor_hint():
+		set_process(false)
+		
 
 func _process(delta):
 	if randf() < .05:

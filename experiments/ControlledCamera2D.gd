@@ -7,13 +7,13 @@ export var zoom_rate : float = 1.1
 
 func _process(delta):
 	if Input.is_key_pressed(KEY_D):
-		position.x += speed * delta
+		position.x += speed * delta * zoom.x
 	if Input.is_key_pressed(KEY_A):
-		position.x -= speed * delta
+		position.x -= speed * delta * zoom.x
 	if Input.is_key_pressed(KEY_W):
-		position.y -= speed * delta
+		position.y -= speed * delta * zoom.y
 	if Input.is_key_pressed(KEY_S):
-		position.y += speed * delta
+		position.y += speed * delta * zoom.y
 	
 	if Input.is_key_pressed(KEY_E):
 		zoom *= zoom_rate

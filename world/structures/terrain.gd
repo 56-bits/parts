@@ -1,12 +1,39 @@
 extends TileMap
 class_name Terrain
 
-sync func edit_terrain(pos, type = 0):
+var nav = AStar.new()
+var occluder_map = OccluderTileMap.new()
+
+func _ready():
+	add_child(occluder_map)
+
+sync func edit_terrain(pos, type = 0):	
 	var cell = world_to_map(pos)
+	
+	var neighbours = [
+			get_cell(cell.x, cell.y + 1),
+			get_cell(cell.x, cell.y - 1),
+			get_cell(cell.x + 1, cell.y),
+			get_cell(cell.x - 1, cell.y)
+	]
+
+	var is_placable = (get_cellv(cell) != type) and \
+			(neighbours.max() > -1)
+
+	if !is_placable and type != -1:
+		return false
+
 	set_cellv(cell, type)
+	
+	var mask = tile_set.tile_get_light_occluder(type)
+	print(mask)
+	
+	return true
 
 func get_state() -> Dictionary:
 	var state = {}
+	
+	state["id"] = name
 	
 	var terrain = {}
 	#go through every block type
@@ -18,6 +45,8 @@ func get_state() -> Dictionary:
 	return state
 
 func set_state(state : Dictionary):
+	name = state["name"]
+	
 	var terrain = state["terrain"]
 	
 	for type in terrain.keys():

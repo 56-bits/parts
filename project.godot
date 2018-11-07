@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://experiments/Controller2D.gd"
 }, {
+"base": "TileMap",
+"class": "OccluderTileMap",
+"language": "GDScript",
+"path": "res://world/terrain/OccluderTileMap.gd"
+}, {
 "base": "Node",
 "class": "QuadTree",
 "language": "GDScript",
@@ -30,14 +35,11 @@ _global_script_classes=[ {
 "path": "res://world/structures/terrain.gd"
 } ]
 _global_script_class_icons={
-"CharacterController": "",
 "ControlledCamera2D": "",
 "Controller2D": "",
-"Npc": "",
-"Player": "",
+"OccluderTileMap": "",
 "QuadTree": "",
-"Terrain": "",
-"npc": ""
+"Terrain": ""
 }
 
 [application]
@@ -52,7 +54,30 @@ globals="*res://global/globals.gd"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "gut" )
+enabled=PoolStringArray( "godot-inheritance-dock" )
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": false,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
 
 [input]
 
@@ -103,6 +128,11 @@ ctrl={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777239,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[network]
+
+limits/debugger_stdout/max_messages_per_frame=50
+limits/debugger_stdout/max_errors_per_frame=50
 
 [rendering]
 

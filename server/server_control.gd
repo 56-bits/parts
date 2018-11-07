@@ -15,21 +15,20 @@ func _ready():
 
 func _process(delta):
 	
-	if Input.is_key_pressed(KEY_CONTROL) and Input.is_action_pressed("primary_click"):
-		m_col.monitoring = true
-	else:
-		m_col.monitoring = false
-		
-		if target != null:
-			if click:
-				target.rpc("edit_terrain", target.get_local_mouse_position(), tile_type)
-			if alt_click:
-				target.rpc("edit_terrain", target.get_local_mouse_position(), alt_tile_type)
+	if Input.is_action_pressed("primary_click"):
+		if Input.is_key_pressed(KEY_CONTROL):
+			$"../mouse_col".position = get_local_mouse_position()
+			m_col.monitoring = true
+		else:
+			m_col.monitoring = false
 	
-	$"../mouse_col".position = get_local_mouse_position()
+	if click:
+		target.rpc("edit_terrain", target.get_local_mouse_position(), tile_type)
+	if alt_click:
+		target.rpc("edit_terrain", target.get_local_mouse_position(), alt_tile_type)
 	
 
-func _unhandled_input(event):
+func _input(event):
 	if event.is_action_pressed("primary_click"):
 		click = true
 		
@@ -56,5 +55,6 @@ func _on_island_create():
 	$"../world".rpc("create_island", pos, speed, active)
 
 func _on_mouse_col_body_entered(body):
-	target = body
-	$"../gui".target = body.name
+	if body is Terrain:
+		target = body
+		$"../gui".target = body.name

@@ -19,13 +19,11 @@ void fragment() {
 render_priority = 0
 shader = SubResource( 1 )
 shader_param/lod = 1.0
-_sections_unfolded = [ "shader_param" ]
 
 [node name="main_menue" type="Node"]
 script = ExtResource( 1 )
 
 [node name="small_world" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="TileMap" type="TileMap" parent="small_world"]
 mode = 0
@@ -45,22 +43,45 @@ collision_mask = 1
 occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 786433, 0, 0, 786462, 0, 0, 851969, 0, 0, 851998, 0, 0, 917505, 0, 0, 917534, 0, 0, 983041, 0, 0, 983070, 0, 0, 1048577, 0, 0, 1048606, 0, 0, 1114113, 0, 0, 1114114, 0, 0, 1114115, 0, 0, 1114116, 0, 0, 1114117, 0, 0, 1114118, 0, 0, 1114119, 0, 0, 1114120, 0, 0, 1114121, 0, 0, 1114122, 0, 0, 1114123, 0, 0, 1114124, 0, 0, 1114125, 0, 0, 1114126, 0, 0, 1114127, 0, 0, 1114128, 0, 0, 1114129, 0, 0, 1114130, 0, 0, 1114131, 0, 0, 1114132, 0, 0, 1114133, 0, 0, 1114134, 0, 0, 1114135, 0, 0, 1114136, 0, 0, 1114137, 0, 0, 1114138, 0, 0, 1114139, 0, 0, 1114140, 0, 0, 1114141, 0, 0, 1114142, 0, 0 )
-_sections_unfolded = [ "Cell" ]
 
 [node name="npcs" type="Node" parent="small_world"]
-editor/display_folded = true
 
 [node name="NPC" parent="small_world/npcs" instance=ExtResource( 3 )]
-position = Vector2( 500, 200 )
-
-[node name="NPC2" parent="small_world/npcs" instance=ExtResource( 3 )]
 position = Vector2( 200, 200 )
 
+[node name="NPC2" parent="small_world/npcs" instance=ExtResource( 3 )]
+position = Vector2( 200, 100 )
+
 [node name="NPC3" parent="small_world/npcs" instance=ExtResource( 3 )]
-position = Vector2( 300, 200 )
+position = Vector2( 200, 300 )
 
 [node name="NPC4" parent="small_world/npcs" instance=ExtResource( 3 )]
-position = Vector2( 400, 200 )
+position = Vector2( 200, 400 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 512, 300 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource( 2 )
@@ -75,7 +96,6 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 0, 0, 0, 1 )
-_sections_unfolded = [ "Material" ]
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 anchor_left = 0.0
@@ -107,7 +127,6 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
-_sections_unfolded = [ "Margin", "Visibility" ]
 
 [node name="ToolButton_server" type="ToolButton" parent="ViewportContainer/VBoxContainer_main"]
 anchor_left = 0.0
@@ -242,7 +261,6 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
-_sections_unfolded = [ "Visibility" ]
 
 [node name="text_size_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings"]
 visible = false
@@ -311,7 +329,6 @@ scrollable = true
 tick_count = 24
 ticks_on_borders = false
 focus_mode = 2
-_sections_unfolded = [ "Rect" ]
 
 [node name="name_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings"]
 anchor_left = 0.0
@@ -665,7 +682,6 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
-_sections_unfolded = [ "Margin", "Visibility" ]
 
 [node name="ToolButton_QuadTree" type="ToolButton" parent="ViewportContainer/VBoxContainer_experiments"]
 anchor_left = 0.0

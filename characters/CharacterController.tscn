@@ -6,9 +6,8 @@
 [node name="CharacterController" type="Node"]
 script = ExtResource( 1 )
 _sections_unfolded = [ "Script" ]
-position = null
+position = Vector2( 0, 0 )
 
 [node name="character" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 0 )
 
-
-[editable path="character"]

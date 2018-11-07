@@ -6,3 +6,8 @@
 [node name="NPC" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="Sprite" parent="character" index="1"]
+modulate = Color( 0.287631, 0.663099, 0.757391, 1 )
+
+
+[editable path="character"]
