@@ -25,7 +25,6 @@ autostart = false
 
 [node name="client_control" type="Node2D" parent="."]
 script = ExtResource( 3 )
-_sections_unfolded = [ "Script" ]
 
 [node name="gui" parent="." instance=ExtResource( 4 )]
 
@@ -40,7 +39,6 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_col"]
 shape = SubResource( 1 )
-_sections_unfolded = [ "shape" ]
 
 [connection signal="timeout" from="network_tick" to="." method="_on_network_tick"]
 [connection signal="body_entered" from="mouse_col" to="client_control" method="_on_mouse_col_body_entered"]

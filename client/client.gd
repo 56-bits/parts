@@ -1,6 +1,6 @@
 extends Node
 
-onready var feedback = $"/root/globals".feedback
+onready var feedback = globals.feedback
 
 var spawn_point = Vector2(0, -200)
 
@@ -12,8 +12,8 @@ var other_player_pk = preload("res://client/player/PlayerSlave.tscn")
 sync var players = {}
 
 onready var my_info = {
-	"player_name" : $"/root/globals".settings.player_name,
-	"colour" : $"/root/globals".settings.colour
+	"player_name" : globals.settings.player_name,
+	"colour" : globals.settings.colour
 }
 
 func _ready():

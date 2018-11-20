@@ -1,6 +1,6 @@
 extends Node
 
-onready var feedback = $"/root/globals".feedback
+onready var feedback = globals.feedback
 
 var player_pk = preload("res://client/player/PlayerSlave.tscn")
 sync var players = {}
