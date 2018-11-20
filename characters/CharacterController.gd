@@ -8,8 +8,7 @@ export var position : Vector2 setget set_pos, get_pos
 var last_pos := position
 
 func _ready():
-	set_meta("editable_children", false)
-	print(get_meta_list())
+	pass
 
 func _network_tick():
 	if self.position != last_pos:

@@ -45,7 +45,7 @@ func get_state() -> Dictionary:
 	return state
 
 func set_state(state : Dictionary):
-	name = state["name"]
+	name = state["id"]
 	
 	var terrain = state["terrain"]
 	

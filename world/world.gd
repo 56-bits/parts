@@ -50,19 +50,17 @@ func set_world(data):
 	if !is_network_master():
 		var npcs = data["npcs"]
 		for id in npcs:
-			var npc = npcs[id]
+			var npc_state = npcs[id]
 			var n = slave_npc.instance()
-#			n.name = npc["name"]
-#			n.get_node("character").colour = npc["colour"]
-			n.set_state(npc)
+			n.set_state(npc_state)
 			$npcs.add_child(n)
 	
 	var structures = data["structures"]
 	for id in structures:
-		var struct = structures[id]
+		var struct_state = structures[id]
 		var s = island.instance()
-		s.set_state(struct)
-		add_child(s)
+		s.set_state(struct_state)
+		$Structures.add_child(s)
 #	for struct in structures:
 #		$Structures.get_node(struct).set_state(structures[struct])
 

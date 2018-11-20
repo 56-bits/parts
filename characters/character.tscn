@@ -17,14 +17,12 @@ collision_mask = 1
 collision/safe_margin = 0.08
 motion/sync_to_physics = false
 script = ExtResource( 1 )
-_sections_unfolded = [ "motion" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform", "Visibility", "texture" ]
 
 [node name="Name" type="Label" parent="."]
 anchor_left = 0.0
@@ -44,9 +42,9 @@ align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Grow Direction" ]
 
 [node name="Light2D" type="Light2D" parent="."]
+visible = false
 position = Vector2( -36, 11 )
 enabled = true
 editor_only = false
@@ -69,5 +67,4 @@ shadow_gradient_length = 0.0
 shadow_filter = 0
 shadow_filter_smooth = 0.0
 shadow_item_cull_mask = 1
-_sections_unfolded = [ "Range", "Shadow" ]
 

@@ -19,6 +19,7 @@ func _process(delta):
 		if Input.is_key_pressed(KEY_CONTROL):
 			$"../mouse_col".position = get_local_mouse_position()
 			m_col.monitoring = true
+			return
 		else:
 			m_col.monitoring = false
 	
