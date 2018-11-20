@@ -1,7 +1,5 @@
 extends Node
 
-onready var feedback = globals.feedback
-
 var spawn_point = Vector2(0, -200)
 
 var selfPeerID = 0
@@ -22,7 +20,7 @@ func _ready():
 	client.create_client($"/root/globals".settings.server_ip, $"/root/globals".settings.port)
 	get_tree().set_network_peer(client)
 	
-	feedback.new_message("connecting to server...")
+	f.new_message("connecting to server...")
 	
 	selfPeerID = get_tree().get_network_unique_id()
 		
@@ -38,7 +36,7 @@ func _ready():
 
 func _peer_connected(id):
 	if id != 1:
-		feedback.new_message("peer %s connected" % str(id))
+		f.new_message("peer %s connected" % str(id))
 		
 		var player = other_player_pk.instance()
 		player.name = String(id)
@@ -48,14 +46,14 @@ func _peer_connected(id):
 
 func _peer_disconnected(id):
 	if id != 1:
-		feedback.new_message("peer %s disconnected" % players[id]["player_name"])
+		f.new_message("peer %s disconnected" % players[id]["player_name"])
 		get_node("world/players/" + str(id)).queue_free()
 		players.erase(id)
 	else: #since the server is id 1, its is equivalent to the server disconnecting
 		_server_disconnected()
 
 func _connected_ok():
-	feedback.new_message("connected to server", "good")
+	f.new_message("connected to server", "good")
 	
 	var player = player_pk.instance()
 	player.name = String(selfPeerID)
@@ -67,12 +65,12 @@ func _connected_ok():
 	$network_tick.start()
 
 func _connected_fail():
-	feedback.new_message("connection failed", "bad")
+	f.new_message("connection failed", "bad")
 	get_tree().change_scene("res://menue/main_menue.tscn")
 	$network_tick.stop()
 
 func _server_disconnected():
-	feedback.new_message("server disconnected", "bad")
+	f.new_message("server disconnected", "bad")
 	get_tree().change_scene("res://menue/main_menue.tscn")
 	$network_tick.stop()
 
@@ -88,12 +86,12 @@ remote func update_players():
 # network bulk synchronisation
 func request_sync():
 	rpc_id(1, "sync_world", selfPeerID)
-	feedback.new_message("Resync requested")
+	f.new_message("Resync requested")
 
 remote func recieve_sync(data):
 	$world.clear_world()
 	$world.set_world(data)
-	feedback.new_message("Resync successfull", "good")
+	f.new_message("Resync successfull", "good")
 
 func _on_network_tick(): # is a signal from the timer
 	get_node("world/players/%s" % str(selfPeerID))._network_tick()

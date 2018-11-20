@@ -7,14 +7,14 @@ var settings = {
 	player_limit = 8,
 	colour = Color(1, 1, 1)
 }
-
-onready var feedback = $"gui/feedback"
-
-func _init():
-	var gui_layer = CanvasLayer.new()
-	gui_layer.name = "gui"
-	add_child(gui_layer)
-	gui_layer.add_child(preload("res://menue/feedback.tscn").instance())
+#
+#onready var feedback = $"gui/feedback"
+#
+#func _init():
+#	var gui_layer = CanvasLayer.new()
+#	gui_layer.name = "gui"
+#	add_child(gui_layer)
+#	gui_layer.add_child(preload("res://menue/feedback.tscn").instance())
 
 
 #

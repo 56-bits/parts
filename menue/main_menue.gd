@@ -1,7 +1,6 @@
 extends Node
 
 var menu_id : int = 0 setget menu_change
-var feedback = globals.feedback
 
 func _ready():
 	
@@ -62,9 +61,9 @@ func _on_ToolButton_backSettings_pressed():
 
 func _on_LineEdit_ip_text_entered(new_text):
 	if new_text.is_valid_ip_address():
-		feedback.new_message("IP adress is valid", "good")
+		f.new_message("IP adress is valid", "good")
 	else:
-		feedback.new_message("IP adress is invalid", "bad")
+		f.new_message("IP adress is invalid", "bad")
 
 ## experiments
 
@@ -73,7 +72,7 @@ func _on_ToolButton_cinematic_pressed():
 
 func _on_ToolButton_QuadTree_pressed():
 	get_tree().change_scene("res://experiments/quadtree/qt.tscn")
-	feedback.new_message("Press esc. to exit")
+	f.new_message("Press esc. to exit")
 
 func _on_ToolButton_backExperiments_pressed():
 	self.menu_id = 0

@@ -1,4 +1,4 @@
-extends RichTextLabel
+extends CanvasLayer
 
 var queue = []
 var message_limit = 20
@@ -11,21 +11,21 @@ func refresh():
 		queue.pop_front()
 	
 	#clear present text
-	text = ""
+	$rtl.text = ""
 	for message in queue:
 		
-		newline()
+		$rtl.newline()
 		
 		#choose message colour
 		match message.status:
 			"good":
-				push_color(Color(0.1,0.9,0.1))
+				$rtl.push_color(Color(0.1,0.9,0.1))
 			"bad":
-				push_color(Color(0.9,0.1,0.1))
+				$rtl.push_color(Color(0.9,0.1,0.1))
 			_:
-				push_color(Color(0.8,0.8,0.8))
+				$rtl.push_color(Color(0.8,0.8,0.8))
 		
-		add_text(message.txt)
+		$rtl.add_text(message.txt)
 
 func new_message(message : String, type = ""):
 	print(message)

@@ -1,7 +1,5 @@
 extends Node
 
-onready var feedback = globals.feedback
-
 var player_pk = preload("res://client/player/PlayerSlave.tscn")
 sync var players = {}
 
@@ -23,12 +21,12 @@ func _ready():
 	var status = server.create_server($"/root/globals".settings.port, $"/root/globals".settings.player_limit)
 	
 	if status == ERR_CANT_CREATE:
-		feedback.new_message("Server could not be created", "bad")
+		f.new_message("Server could not be created", "bad")
 		get_tree().change_scene("res://menue/main_menue.tscn")
 	
 	get_tree().set_network_peer(server)
 	
-	feedback.new_message("server created")
+	f.new_message("server created")
 	
 	$network_tick.start()
 	
@@ -37,7 +35,7 @@ func _ready():
 	get_tree().connect("network_peer_disconnected", self, "_client_disconnected")
 
 func _client_connected(id):
-	feedback.new_message("client %s connected" % str(id))
+	f.new_message("client %s connected" % str(id))
 	
 	#create player locally
 	var player = player_pk.instance()
@@ -50,7 +48,7 @@ func _client_connected(id):
 	rpc_id(id, "get_player_inf")
 
 func _client_disconnected(id):
-	feedback.new_message("client %s aka %s disconnected" % [str(id), players[id]["player_name"]])
+	f.new_message("client %s aka %s disconnected" % [str(id), players[id]["player_name"]])
 	
 	get_node("world/players/" + str(id)).queue_free()
 	
@@ -58,14 +56,14 @@ func _client_disconnected(id):
 
 remote func register_player(id, inf):
 	players[id] = inf
-	feedback.new_message(inf["player_name"] + " has registered", "good")
+	f.new_message(inf["player_name"] + " has registered", "good")
 	rset("players", players)
 	rpc("update_players")
 	update_players()
 
 remote func sync_world(id : int):
 	var data = $world.world_data()
-	feedback.new_message("%s aka %s requested a resync" % [id, players[id]["player_name"]])
+	f.new_message("%s aka %s requested a resync" % [id, players[id]["player_name"]])
 	rpc_id(id, "recieve_sync", data)
 
 func update_players():

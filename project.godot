@@ -51,6 +51,7 @@ config/icon="res://icon.png"
 [autoload]
 
 globals="*res://global/globals.gd"
+f="*res://menue/feedback.tscn"
 
 [importer_defaults]
 
