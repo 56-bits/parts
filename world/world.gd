@@ -61,8 +61,6 @@ func set_world(data):
 		var s = island.instance()
 		s.set_state(struct_state)
 		$Structures.add_child(s)
-#	for struct in structures:
-#		$Structures.get_node(struct).set_state(structures[struct])
 
 sync func edit_terrain(pos, type = 0):
 	var cell = $terrain.world_to_map(pos)

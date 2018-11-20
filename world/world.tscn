@@ -120,3 +120,5 @@ __meta__ = {
 
 [node name="Structures" type="Node" parent="."]
 
+[node name="players" type="Node" parent="."]
+

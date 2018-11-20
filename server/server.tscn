@@ -17,13 +17,11 @@ spawn_point = Vector2( 0, -200 )
 
 [node name="network_tick" type="Timer" parent="."]
 process_mode = 1
-wait_time = 1.0
+wait_time = 0.1
 one_shot = false
 autostart = false
 
 [node name="world" parent="." instance=ExtResource( 2 )]
-
-[node name="players" type="Node" parent="world"]
 
 [node name="server_control" type="Node2D" parent="."]
 script = ExtResource( 3 )

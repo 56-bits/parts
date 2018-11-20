@@ -21,8 +21,6 @@ autostart = false
 
 [node name="world" parent="." instance=ExtResource( 2 )]
 
-[node name="players" type="Node" parent="world"]
-
 [node name="client_control" type="Node2D" parent="."]
 script = ExtResource( 3 )
 
