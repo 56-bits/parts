@@ -5,8 +5,8 @@ func _ready():
 	._ready()
 	if Engine.is_editor_hint():
 		set_process(false)
-		
 
+#warning-ignore:unused_variable
 func _process(delta):
 	if randf() < .05:
 		match randi()%4:

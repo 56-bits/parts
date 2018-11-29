@@ -5,16 +5,16 @@ var spawn_point = Vector2(0, -200)
 var selfPeerID = 0
 
 var player_pk = preload("res://client/player/Player.tscn")
-var other_player_pk = preload("res://client/player/PlayerSlave.tscn")
+var other_player_pk = preload("res://client/player/PlayerPuppet.tscn")
 
-sync var players = {}
+var my_player
 
-onready var my_info = {
-	"player_name" : globals.settings.player_name,
-	"colour" : globals.settings.colour
-}
+var players = PlayerList.new()
 
 func _ready():
+	players.name = "PlayerList"
+	add_child(players)
+	
 	#create client
 	var client = NetworkedMultiplayerENet.new()
 	client.create_client($"/root/globals".settings.server_ip, $"/root/globals".settings.port)
@@ -31,8 +31,6 @@ func _ready():
 	get_tree().connect("connected_to_server", self, "_connected_ok")
 	get_tree().connect("connection_failed", self, "_connected_fail")
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
-	
-
 
 func _peer_connected(id):
 	if id != 1:
@@ -55,12 +53,11 @@ func _peer_disconnected(id):
 func _connected_ok():
 	f.new_message("connected to server", "good")
 	
-	var player = player_pk.instance()
-	player.name = String(selfPeerID)
-	player.position = spawn_point
-	player.set_network_master(selfPeerID)
-	player.get_node("character").colour = $"/root/globals".settings.colour
-	$world/players.add_child(player)
+	my_player = player_pk.instance()
+	my_player.name = String(selfPeerID)
+	my_player.position = spawn_point
+	my_player.set_network_master(selfPeerID)
+	$world/players.add_child(my_player)
 	
 	$network_tick.start()
 
@@ -74,14 +71,21 @@ func _server_disconnected():
 	get_tree().change_scene("res://menue/main_menue.tscn")
 	$network_tick.stop()
 
+#touch if suicidal
 remote func get_player_inf():
-	rpc_id(1, "register_player", selfPeerID, my_info)
+	f.new_message("registering self as %s with %s" % [str(selfPeerID), str(my_player.get_state())])
+	rpc_id(1, "register_player", selfPeerID, my_player.get_state())
 	request_sync()
 
 remote func update_players():
 	for p in $"world/players".get_children():
-		p.get_node("character/Name").text = players[int(p.name)]["player_name"]
-		p.get_node("character").colour = players[int(p.name)]["colour"]
+		p.set_state(players.get_player(int(p.name))["info"])
+#		p.get_node("character/Name").text = players[int(p.name)]["player_name"]
+#		p.get_node("character").colour = players[int(p.name)]["colour"]
+
+func close_network():
+	get_tree().set_network_peer(null)
+	
 
 # network bulk synchronisation
 func request_sync():
@@ -94,5 +98,5 @@ remote func recieve_sync(data):
 	f.new_message("Resync successfull", "good")
 
 func _on_network_tick(): # is a signal from the timer
-	get_node("world/players/%s" % str(selfPeerID))._network_tick()
+	my_player._network_tick()
 	$gui._network_tick()

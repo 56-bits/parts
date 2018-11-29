@@ -25,9 +25,24 @@ _global_script_classes=[ {
 "path": "res://world/terrain/OccluderTileMap.gd"
 }, {
 "base": "Node",
+"class": "PlayerList",
+"language": "GDScript",
+"path": "res://server/PlayerList.gd"
+}, {
+"base": "Node",
 "class": "QuadTree",
 "language": "GDScript",
 "path": "res://experiments/quadtree/QuadTree.gd"
+}, {
+"base": "Control",
+"class": "RadialContainer",
+"language": "GDScript",
+"path": "res://menue/RadialContainer.gd"
+}, {
+"base": "Control",
+"class": "RadialItemList",
+"language": "GDScript",
+"path": "res://menue/RadialItemList.gd"
 }, {
 "base": "TileMap",
 "class": "Terrain",
@@ -38,7 +53,10 @@ _global_script_class_icons={
 "ControlledCamera2D": "",
 "Controller2D": "",
 "OccluderTileMap": "",
+"PlayerList": "",
 "QuadTree": "",
+"RadialContainer": "",
+"RadialItemList": "",
 "Terrain": ""
 }
 

@@ -20,12 +20,13 @@ func player_list():
 	for child in $VSplitContainer/VBoxContainer.get_children():
 		child.queue_free()
 	
-	for p in players:
-		var name = players[p]["player_name"]
+	var rp = players.ready_players()
+	for p in rp:
+		var n = rp[p]["info"]["name"]
 		var pos = get_node("../world/players/%s" % str(p)).position
 		var coord = $"../world".get_cell_pos(pos)
 		coord.y = -coord.y
-		var msg = name + ", " + str(coord)
+		var msg = n + ", " + str(coord)
 		var label = Label.new()
 		label.text = msg
 		$VSplitContainer/VBoxContainer.add_child(label)
@@ -40,6 +41,7 @@ func _on_show_player_list_toggled(button_pressed):
 
 func _on_exit_button_pressed():
 	get_tree().change_scene("res://menue/main_menue.tscn")
+	$"/root/game".close_network()
 
 func _on_back_button_pressed():
 	$menu.visible = false

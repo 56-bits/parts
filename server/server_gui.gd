@@ -7,5 +7,5 @@ func _process(delta):
 	$VSplitContainer/HSplitContainer/coordinates.text = str(cell_pos)
 	player_list()
 
-func _on_createisland_Button_pressed():
-	$IslandDialog.popup_centered()
+#func _on_createisland_Button_pressed():
+#	$IslandDialog.popup_centered()

@@ -1,1 +1,0 @@
-extends "res://characters/CharacterSlave.gd"

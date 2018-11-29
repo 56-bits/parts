@@ -1,5 +1,6 @@
 extends Node
 
+#warning-ignore:unused_variable
 var settings = {
 	player_name = "Guest",
 	server_ip = "localhost",

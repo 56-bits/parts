@@ -1,0 +1,1 @@
+extends "res://characters/CharacterPuppet.gd"

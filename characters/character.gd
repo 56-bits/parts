@@ -20,7 +20,7 @@ var colour : Color = Color(randf(),randf(),randf()) setget change_colour
 
 func _ready():
 	change_colour(colour)
-
+#warning-ignore:unused_variable
 func _physics_process(delta):
 		
 	if is_on_floor():
@@ -48,8 +48,10 @@ func _physics_process(delta):
 		
 	#velocity += get_floor_velocity()
 	if dir.y < 0:
+		#warning-ignore:return_value_discarded
 		move_and_slide(velocity, Vector2(0, -1))
 	else:
+		#warning-ignore:return_value_discarded
 		move_and_slide_with_snap(velocity, Vector2(0, 10), Vector2(0, -1))
 	
 

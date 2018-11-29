@@ -3,7 +3,6 @@ extends Node
 var menu_id : int = 0 setget menu_change
 
 func _ready():
-	
 	randomize()
 	
 	$ViewportContainer/VBoxContainer_settings/name_section/LineEdit.text = globals.settings.player_name 
@@ -35,9 +34,11 @@ func menu_change(new_id):
 
 ## main menuu
 func _on_ToolButton_server_pressed():
+	#warning-ignore:return_value_discarded
 	get_tree().change_scene("res://server/server.tscn")
 
 func _on_ToolButton_client_pressed():
+	#warning-ignore:return_value_discarded
 	get_tree().change_scene("res://client/client.tscn")
 
 func _on_ToolButton_experiments_pressed():
@@ -68,9 +69,11 @@ func _on_LineEdit_ip_text_entered(new_text):
 ## experiments
 
 func _on_ToolButton_cinematic_pressed():
+	#warning-ignore:return_value_discarded
 	get_tree().change_scene("res://experiments/cinematic/TestCinematic.tscn")
 
 func _on_ToolButton_QuadTree_pressed():
+	#warning-ignore:return_value_discarded
 	get_tree().change_scene("res://experiments/quadtree/qt.tscn")
 	f.new_message("Press esc. to exit")
 

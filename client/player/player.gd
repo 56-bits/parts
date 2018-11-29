@@ -3,6 +3,7 @@ extends "res://characters/CharacterController.gd"
 func _ready():
 	._ready()
 	$character/Name.text = $"/root/globals".settings.player_name
+	$character.colour = $"/root/globals".settings.colour
 
 func _process(delta):
 	movement = Vector2()
