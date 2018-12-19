@@ -7,7 +7,10 @@ var occluder_map = OccluderTileMap.new()
 func _ready():
 	add_child(occluder_map)
 
-sync func edit_terrain(pos, type = 0):	
+sync func direct_edit(cell, type = 0):
+	set_cellv(cell, type)
+
+sync func edit_terrain(pos, type = 0):
 	var cell = world_to_map(pos)
 	
 	var neighbours = [
@@ -25,8 +28,8 @@ sync func edit_terrain(pos, type = 0):
 
 	set_cellv(cell, type)
 	
-	var mask = tile_set.tile_get_light_occluder(type)
-	print(mask)
+#	var mask = tile_set.tile_get_light_occluder(type)
+#	print(mask)
 	
 	return true
 

@@ -37,9 +37,9 @@ func _on_Main_item_selected(index):
 		1:
 			get_tree().change_scene("res://client/client.tscn")
 		2:
-			self.menu_id = 1
-		3:
 			self.menu_id = 2
+		3:
+			self.menu_id = 1
 		4:
 			get_tree().quit()
 

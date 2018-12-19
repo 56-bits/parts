@@ -16,10 +16,12 @@ func _process(delta):
 	
 	$character.move(movement, sprint)
 
-slave func update_movement(pos : Vector2, mov : Vector2, spr : bool):
+puppet func update_movement(pos : Vector2, mov : Vector2, spr : bool):
 	var diff := get_pos() - pos
 	
-	if diff.length() < 5:
+#	set_pos(pos)
+	
+	if diff.length() < 2:
 		set_pos(pos)
 		is_interpolating = false
 	elif diff.length() < 100:
@@ -32,13 +34,13 @@ slave func update_movement(pos : Vector2, mov : Vector2, spr : bool):
 	movement = mov
 	sprint = spr
 
-slave func update_status():
+puppet func update_status():
 	pass
 
 func interpolate() -> void:
-	var diff := get_pos() - interpolating_pos
+	var diff := interpolating_pos - get_pos()
 	
-	if diff.length() < 5:
+	if diff.length() > 2:
 		diff /= 4
 		set_pos(get_pos() + diff)
 	else:

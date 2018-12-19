@@ -4,10 +4,10 @@ var speed : float = 150
 
 var air_multiplier : float = 0.75
 
-var sprint_multiplier : float = 2
+var sprint_multiplier : float = 1.5
 var is_sprinting : bool = false
 
-var jump_speed : float = 200
+var jump_speed : float = 180
 
 var gravity : float = 10
 
@@ -22,12 +22,12 @@ func _ready():
 	change_colour(colour)
 #warning-ignore:unused_variable
 func _physics_process(delta):
-	if dir.x == 0:
-		velocity.x = 0
 	
-		
 	if is_on_floor():
 		velocity.x += dir.x * speed * 0.5
+		
+		if dir.x == 0:
+			velocity.x = 0
 		
 		velocity.y = 0
 		
@@ -40,8 +40,11 @@ func _physics_process(delta):
 		if abs(velocity.x) < abs(dir.x * speed * air_multiplier):
 			velocity.x = dir.x * speed * air_multiplier * 0.5
 		
+		if dir.x == 0:
+			velocity.x -= velocity.x * air_multiplier
+		
 		if dir.y < 0 and velocity.y < 0:
-			velocity.y -= gravity/2
+			velocity.y -= gravity/4
 		
 		velocity.y += gravity
 		

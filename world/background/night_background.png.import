@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/strange.png-ef31e9eada8180cbd37ccb41d585c87f.stex"
+path="res://.import/night_background.png-97262b0e9acf9f63e88cea501ad24cd3.stex"
 
 [deps]
 
-source_file="res://characters/sprites/strange.png"
-dest_files=[ "res://.import/strange.png-ef31e9eada8180cbd37ccb41d585c87f.stex" ]
+source_file="res://world/background/night_background.png"
+dest_files=[ "res://.import/night_background.png-97262b0e9acf9f63e88cea501ad24cd3.stex" ]
 
 [params]
 

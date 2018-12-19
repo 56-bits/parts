@@ -31,6 +31,7 @@ func _ready():
 	f.new_message("server created")
 	
 	$network_tick.start()
+	$world.gen.generate()
 	
 	#connect functions
 	get_tree().connect("network_peer_connected", self,"_client_connected"   )

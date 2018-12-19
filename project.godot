@@ -48,6 +48,11 @@ _global_script_classes=[ {
 "class": "Terrain",
 "language": "GDScript",
 "path": "res://world/structures/terrain.gd"
+}, {
+"base": "Node",
+"class": "WorldGenerator",
+"language": "GDScript",
+"path": "res://world/WorldGenerator.gd"
 } ]
 _global_script_class_icons={
 "ControlledCamera2D": "",
@@ -57,7 +62,8 @@ _global_script_class_icons={
 "QuadTree": "",
 "RadialContainer": "",
 "RadialItemList": "",
-"Terrain": ""
+"Terrain": "",
+"WorldGenerator": ""
 }
 
 [application]

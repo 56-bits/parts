@@ -1,9 +1,12 @@
 extends Node
 
 var puppet_npc = preload("res://characters/npc/NPCPuppet.tscn")
+var gen = WorldGenerator.new()
 
 func _ready():
-	pass
+	gen.t = $terrain
+	add_child(gen)
+
 #get world state
 func world_data():
 	

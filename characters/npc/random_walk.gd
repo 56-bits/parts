@@ -12,7 +12,7 @@ func _process(delta):
 		match randi()%4:
 			0:
 				movement = Vector2()
-				sprint != sprint
+				sprint = !sprint
 			1:
 				movement.x = -1
 			2:

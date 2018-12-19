@@ -2,13 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/strange.png-ef31e9eada8180cbd37ccb41d585c87f.stex"
+valid=false
 
 [deps]
 
-source_file="res://characters/sprites/strange.png"
-dest_files=[ "res://.import/strange.png-ef31e9eada8180cbd37ccb41d585c87f.stex" ]
-
+source_file="res://world/background/gradientbgn2.png"
 [params]
 
 compress/mode=0

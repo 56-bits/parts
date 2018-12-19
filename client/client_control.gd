@@ -28,7 +28,7 @@ func _process(delta):
 	$"../mouse_col".position = get_local_mouse_position()
 	
 
-func _unhandled_input(event):
+func _input(event):
 	if event.is_action_pressed("primary_click"):
 		click = true
 		

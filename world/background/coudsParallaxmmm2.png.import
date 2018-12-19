@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/strange.png-ef31e9eada8180cbd37ccb41d585c87f.stex"
+path="res://.import/coudsParallaxmmm2.png-ef3c7b18059ad873ad04e5c52c9752da.stex"
 
 [deps]
 
-source_file="res://characters/sprites/strange.png"
-dest_files=[ "res://.import/strange.png-ef31e9eada8180cbd37ccb41d585c87f.stex" ]
+source_file="res://world/background/coudsParallaxmmm2.png"
+dest_files=[ "res://.import/coudsParallaxmmm2.png-ef3c7b18059ad873ad04e5c52c9752da.stex" ]
 
 [params]
 

@@ -59,8 +59,14 @@ color = Color( 0, 0, 0, 1 )
 [node name="ViewportContainer" type="CanvasLayer" parent="."]
 
 [node name="Main" type="ItemList" parent="ViewportContainer"]
-margin_right = 150.0
-margin_bottom = 213.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -75.0
+margin_top = -106.5
+margin_right = 75.0
+margin_bottom = 106.5
 items = [ "Server", null, false, "Client", null, false, "Experiments", null, false, "Settings", null, false, "Exit", null, false ]
 allow_reselect = true
 
@@ -193,8 +199,15 @@ margin_bottom = 158.0
 text = "Back"
 
 [node name="Experiments" type="ItemList" parent="ViewportContainer"]
-margin_right = 162.0
-margin_bottom = 215.0
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -81.0
+margin_top = -107.5
+margin_right = 81.0
+margin_bottom = 107.5
 items = [ "Quad Tree", null, false, "Cinemtatic", null, false, "Back", null, false ]
 allow_reselect = true
 

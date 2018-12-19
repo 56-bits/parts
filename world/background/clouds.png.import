@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/strange.png-ef31e9eada8180cbd37ccb41d585c87f.stex"
+path="res://.import/clouds.png-efa7621c8fd839089f9a97a740aa83c4.stex"
 
 [deps]
 
-source_file="res://characters/sprites/strange.png"
-dest_files=[ "res://.import/strange.png-ef31e9eada8180cbd37ccb41d585c87f.stex" ]
+source_file="res://world/background/clouds.png"
+dest_files=[ "res://.import/clouds.png-efa7621c8fd839089f9a97a740aa83c4.stex" ]
 
 [params]
 
