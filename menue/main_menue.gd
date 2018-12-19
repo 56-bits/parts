@@ -14,41 +14,34 @@ func _ready():
 func menu_change(new_id):
 	menu_id = new_id
 	
+	for c in $ViewportContainer.get_children():
+		c.hide()
+	
 	match menu_id:
 		0 :
-			for c in $ViewportContainer.get_children():
-				c.hide()
-			$ViewportContainer/VBoxContainer_main.show()
+			$ViewportContainer/Main.show()
 		1 :
-			for c in $ViewportContainer.get_children():
-				c.hide()
 			$ViewportContainer/VBoxContainer_settings.show()
 		2 :
-			for c in $ViewportContainer.get_children():
-				c.hide()
-			$ViewportContainer/VBoxContainer_experiments.show()
+			$ViewportContainer/Experiments.show()
 		_ :
 			menu_id = 0
 
 #button actions
 
-## main menuu
-func _on_ToolButton_server_pressed():
-	#warning-ignore:return_value_discarded
-	get_tree().change_scene("res://server/server.tscn")
-
-func _on_ToolButton_client_pressed():
-	#warning-ignore:return_value_discarded
-	get_tree().change_scene("res://client/client.tscn")
-
-func _on_ToolButton_experiments_pressed():
-	self.menu_id = 2
-
-func _on_ToolButton_settings_pressed():
-	self.menu_id = 1
-
-func _on_ToolButton_exit_pressed():
-	get_tree().quit()
+## main menu
+func _on_Main_item_selected(index):
+	match index:
+		0:
+			get_tree().change_scene("res://server/server.tscn")
+		1:
+			get_tree().change_scene("res://client/client.tscn")
+		2:
+			self.menu_id = 1
+		3:
+			self.menu_id = 2
+		4:
+			get_tree().quit()
 
 ## settings
 func _on_ToolButton_backSettings_pressed():
@@ -67,15 +60,12 @@ func _on_LineEdit_ip_text_entered(new_text):
 		f.new_message("IP adress is invalid", "bad")
 
 ## experiments
-
-func _on_ToolButton_cinematic_pressed():
-	#warning-ignore:return_value_discarded
-	get_tree().change_scene("res://experiments/cinematic/TestCinematic.tscn")
-
-func _on_ToolButton_QuadTree_pressed():
-	#warning-ignore:return_value_discarded
-	get_tree().change_scene("res://experiments/quadtree/qt.tscn")
-	f.new_message("Press esc. to exit")
-
-func _on_ToolButton_backExperiments_pressed():
-	self.menu_id = 0
+func _on_Experiments_item_selected(index):
+	match index:
+		0:
+			get_tree().change_scene("res://experiments/cinematic/TestCinematic.tscn")
+		1:
+			get_tree().change_scene("res://experiments/quadtree/qt.tscn")
+			f.new_message("Press esc. to exit")
+		2:
+			self.menu_id = 0

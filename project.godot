@@ -37,12 +37,12 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "RadialContainer",
 "language": "GDScript",
-"path": "res://menue/RadialContainer.gd"
+"path": "res://menue/radial_menu/RadialContainer.gd"
 }, {
 "base": "Control",
 "class": "RadialItemList",
 "language": "GDScript",
-"path": "res://menue/RadialItemList.gd"
+"path": "res://menue/radial_menu/RadialItemList.gd"
 }, {
 "base": "TileMap",
 "class": "Terrain",

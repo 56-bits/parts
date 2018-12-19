@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://menue/radial_menu/RadialButton.gd" type="Script" id=1]
+[ext_resource path="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex" type="Texture" id=2]
+
+[node name="RadialButton" type="Control"]
+script = ExtResource( 1 )
+
+[node name="Text" type="Label" parent="."]
+grow_horizontal = 0
+
+[node name="Icon" type="TextureRect" parent="."]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+
+[node name="Extents" type="ReferenceRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[connection signal="mouse_entered" from="Extents" to="." method="_on_Extents_mouse_entered"]
+[connection signal="mouse_exited" from="Extents" to="." method="_on_Extents_mouse_exited"]

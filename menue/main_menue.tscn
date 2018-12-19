@@ -16,7 +16,6 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id=2]
 
-render_priority = 0
 shader = SubResource( 1 )
 shader_param/lod = 1.0
 
@@ -26,21 +25,8 @@ script = ExtResource( 1 )
 [node name="small_world" type="Node" parent="."]
 
 [node name="TileMap" type="TileMap" parent="small_world"]
-mode = 0
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
-cell_quadrant_size = 16
-cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-cell_half_offset = 2
-cell_tile_origin = 0
-cell_y_sort = false
-cell_clip_uv = false
-collision_use_kinematic = false
-collision_friction = 1.0
-collision_bounce = 0.0
-collision_layer = 1
-collision_mask = 1
-occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 786433, 0, 0, 786462, 0, 0, 851969, 0, 0, 851998, 0, 0, 917505, 0, 0, 917534, 0, 0, 983041, 0, 0, 983070, 0, 0, 1048577, 0, 0, 1048606, 0, 0, 1114113, 0, 0, 1114114, 0, 0, 1114115, 0, 0, 1114116, 0, 0, 1114117, 0, 0, 1114118, 0, 0, 1114119, 0, 0, 1114120, 0, 0, 1114121, 0, 0, 1114122, 0, 0, 1114123, 0, 0, 1114124, 0, 0, 1114125, 0, 0, 1114126, 0, 0, 1114127, 0, 0, 1114128, 0, 0, 1114129, 0, 0, 1114130, 0, 0, 1114131, 0, 0, 1114132, 0, 0, 1114133, 0, 0, 1114134, 0, 0, 1114135, 0, 0, 1114136, 0, 0, 1114137, 0, 0, 1114138, 0, 0, 1114139, 0, 0, 1114140, 0, 0, 1114141, 0, 0, 1114142, 0, 0 )
 
@@ -60,180 +46,23 @@ position = Vector2( 200, 400 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 512, 300 )
-anchor_mode = 1
-rotating = false
 current = true
-zoom = Vector2( 1, 1 )
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
-limit_bottom = 10000000
-limit_smoothed = false
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
-smoothing_enabled = false
-smoothing_speed = 5.0
-offset_v = 0.0
-offset_h = 0.0
-drag_margin_left = 0.2
-drag_margin_top = 0.2
-drag_margin_right = 0.2
-drag_margin_bottom = 0.2
-editor_draw_screen = true
-editor_draw_limits = false
-editor_draw_drag_margin = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource( 2 )
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 color = Color( 0, 0, 0, 1 )
 
 [node name="ViewportContainer" type="CanvasLayer" parent="."]
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="VBoxContainer_main" type="VBoxContainer" parent="ViewportContainer"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -62.5
-margin_top = -37.0
-margin_right = 62.5
-margin_bottom = 37.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-
-[node name="ToolButton_server" type="ToolButton" parent="ViewportContainer/VBoxContainer_main"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 125.0
-margin_bottom = 22.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Host server"
-flat = true
-align = 1
-
-[node name="ToolButton_client" type="ToolButton" parent="ViewportContainer/VBoxContainer_main"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 26.0
-margin_right = 125.0
-margin_bottom = 48.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Connect to server"
-flat = true
-align = 1
-
-[node name="ToolButton_experiments" type="ToolButton" parent="ViewportContainer/VBoxContainer_main"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 52.0
-margin_right = 125.0
-margin_bottom = 74.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Experiments"
-flat = true
-align = 1
-
-[node name="ToolButton_settings" type="ToolButton" parent="ViewportContainer/VBoxContainer_main"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 78.0
-margin_right = 125.0
-margin_bottom = 100.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Settings"
-flat = true
-align = 1
-
-[node name="ToolButton_exit" type="ToolButton" parent="ViewportContainer/VBoxContainer_main"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 104.0
-margin_right = 125.0
-margin_bottom = 126.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Exit"
-flat = true
-align = 1
+[node name="Main" type="ItemList" parent="ViewportContainer"]
+margin_right = 150.0
+margin_bottom = 213.0
+items = [ "Server", null, false, "Client", null, false, "Experiments", null, false, "Settings", null, false, "Exit", null, false ]
+allow_reselect = true
 
 [node name="VBoxContainer_settings" type="VBoxContainer" parent="ViewportContainer"]
 editor/display_folded = true
@@ -247,511 +76,129 @@ margin_top = -39.0
 margin_right = 100.0
 margin_bottom = 39.0
 rect_min_size = Vector2( 200, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
 
 [node name="text_size_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings"]
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_right = 165.0
 margin_bottom = 16.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-split_offset = 0
-collapsed = false
-dragger_visibility = 0
 
 [node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/text_size_section"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 1.0
 margin_right = 57.0
 margin_bottom = 15.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "Text Size"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="HSlider_textSize" type="HSlider" parent="ViewportContainer/VBoxContainer_settings/text_size_section"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 69.0
 margin_right = 165.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 96, 16 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 0
 min_value = 12.0
 max_value = 36.0
-step = 1.0
-page = 0.0
 value = 12.0
-exp_edit = false
-rounded = false
-allow_greater = false
-allow_lesser = false
-editable = true
-scrollable = true
 tick_count = 24
-ticks_on_borders = false
-focus_mode = 2
 
 [node name="name_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_right = 200.0
 margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-split_offset = 0
-collapsed = false
-dragger_visibility = 0
 
 [node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/name_section"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 5.0
 margin_right = 38.0
 margin_bottom = 19.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "Name"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="LineEdit" type="LineEdit" parent="ViewportContainer/VBoxContainer_settings/name_section"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 50.0
 margin_right = 200.0
 margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 1
-size_flags_horizontal = 1
-size_flags_vertical = 1
 text = "Guest"
-secret_character = "*"
-focus_mode = 2
-context_menu_enabled = true
-clear_button_enabled = false
-placeholder_alpha = 0.6
-caret_blink = false
-caret_blink_speed = 0.65
-caret_position = 0
 
 [node name="colour_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 28.0
 margin_right = 200.0
 margin_bottom = 48.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-split_offset = 0
-collapsed = false
-dragger_visibility = 0
 
 [node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/colour_section"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 3.0
 margin_right = 41.0
 margin_bottom = 17.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "Colour"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="ViewportContainer/VBoxContainer_settings/colour_section"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 53.0
 margin_right = 200.0
 margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 flat = true
-align = 1
 color = Color( 1, 1, 1, 1 )
 edit_alpha = false
 
 [node name="ip_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 52.0
 margin_right = 200.0
 margin_bottom = 76.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-split_offset = 0
-collapsed = false
-dragger_visibility = 0
 
 [node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/ip_section"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 5.0
 margin_right = 57.0
 margin_bottom = 19.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "Server IP"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="LineEdit" type="LineEdit" parent="ViewportContainer/VBoxContainer_settings/ip_section"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 69.0
 margin_right = 200.0
 margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 1
-size_flags_horizontal = 1
-size_flags_vertical = 1
 text = "121.216.98.37"
-secret_character = "*"
-focus_mode = 2
-context_menu_enabled = true
-clear_button_enabled = false
-placeholder_alpha = 0.6
-caret_blink = false
-caret_blink_speed = 0.65
-caret_position = 0
 
 [node name="port_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 80.0
 margin_right = 200.0
 margin_bottom = 104.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-split_offset = 0
-collapsed = false
-dragger_visibility = 0
 
 [node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/port_section"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 5.0
 margin_right = 26.0
 margin_bottom = 19.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "Port"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="SpinBox" type="SpinBox" parent="ViewportContainer/VBoxContainer_settings/port_section"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 38.0
 margin_right = 200.0
 margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 min_value = 1024.0
 max_value = 65535.0
-step = 1.0
-page = 0.0
 value = 8080.0
-exp_edit = false
-rounded = false
-allow_greater = false
-allow_lesser = false
-editable = true
-prefix = ""
-suffix = ""
 
 [node name="player_limit_section" type="HSplitContainer" parent="ViewportContainer/VBoxContainer_settings"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 108.0
 margin_right = 200.0
 margin_bottom = 132.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-split_offset = 0
-collapsed = false
-dragger_visibility = 0
 
 [node name="Label" type="Label" parent="ViewportContainer/VBoxContainer_settings/player_limit_section"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 5.0
 margin_right = 73.0
 margin_bottom = 19.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "Player limit"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="SpinBox" type="SpinBox" parent="ViewportContainer/VBoxContainer_settings/player_limit_section"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 85.0
 margin_right = 200.0
 margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-min_value = 0.0
-max_value = 100.0
-step = 1.0
-page = 0.0
 value = 32.0
-exp_edit = false
-rounded = false
-allow_greater = false
-allow_lesser = false
-editable = true
-prefix = ""
-suffix = ""
 
 [node name="ToolButton_backSettings" type="ToolButton" parent="ViewportContainer/VBoxContainer_settings"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 136.0
 margin_right = 200.0
 margin_bottom = 158.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Back"
-flat = true
-align = 1
 
-[node name="VBoxContainer_experiments" type="VBoxContainer" parent="ViewportContainer"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -62.0
-margin_top = -37.0
-margin_right = 79.0
-margin_bottom = 89.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-
-[node name="ToolButton_QuadTree" type="ToolButton" parent="ViewportContainer/VBoxContainer_experiments"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 26.0
-margin_right = 141.0
-margin_bottom = 48.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "View Test Quadtree"
-flat = true
-align = 1
-
-[node name="ToolButton_cinematic" type="ToolButton" parent="ViewportContainer/VBoxContainer_experiments"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 141.0
-margin_bottom = 22.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "View Test Cinematic"
-flat = true
-align = 1
-
-[node name="ToolButton_backExperiments" type="ToolButton" parent="ViewportContainer/VBoxContainer_experiments"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -38.0
-margin_top = 134.0
+[node name="Experiments" type="ItemList" parent="ViewportContainer"]
 margin_right = 162.0
-margin_bottom = 156.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Back"
-flat = true
-align = 1
+margin_bottom = 215.0
+items = [ "Quad Tree", null, false, "Cinemtatic", null, false, "Back", null, false ]
+allow_reselect = true
 
-[connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_server" to="." method="_on_ToolButton_server_pressed"]
-[connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_client" to="." method="_on_ToolButton_client_pressed"]
-[connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_experiments" to="." method="_on_ToolButton_experiments_pressed"]
-[connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_settings" to="." method="_on_ToolButton_settings_pressed"]
-[connection signal="pressed" from="ViewportContainer/VBoxContainer_main/ToolButton_exit" to="." method="_on_ToolButton_exit_pressed"]
+[connection signal="item_selected" from="ViewportContainer/Main" to="." method="_on_Main_item_selected"]
 [connection signal="text_entered" from="ViewportContainer/VBoxContainer_settings/ip_section/LineEdit" to="." method="_on_LineEdit_ip_text_entered"]
 [connection signal="pressed" from="ViewportContainer/VBoxContainer_settings/ToolButton_backSettings" to="." method="_on_ToolButton_backSettings_pressed"]
-[connection signal="pressed" from="ViewportContainer/VBoxContainer_experiments/ToolButton_QuadTree" to="." method="_on_ToolButton_QuadTree_pressed"]
-[connection signal="pressed" from="ViewportContainer/VBoxContainer_experiments/ToolButton_cinematic" to="." method="_on_ToolButton_cinematic_pressed"]
-[connection signal="pressed" from="ViewportContainer/VBoxContainer_experiments/ToolButton_backExperiments" to="." method="_on_ToolButton_backExperiments_pressed"]
+[connection signal="item_selected" from="ViewportContainer/Experiments" to="." method="_on_Experiments_item_selected"]
