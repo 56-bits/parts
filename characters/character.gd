@@ -22,9 +22,13 @@ func _ready():
 	change_colour(colour)
 #warning-ignore:unused_variable
 func _physics_process(delta):
+	if dir.x == 0:
+		velocity.x = 0
+	
 		
 	if is_on_floor():
-		velocity.x = dir.x * speed
+		velocity.x += dir.x * speed * 0.5
+		
 		velocity.y = 0
 		
 		if dir.y < 0:
@@ -33,10 +37,11 @@ func _physics_process(delta):
 		last_floor_vel = get_floor_velocity()
 		
 	else:
-		velocity.x = dir.x * speed * air_multiplier
+		if abs(velocity.x) < abs(dir.x * speed * air_multiplier):
+			velocity.x = dir.x * speed * air_multiplier * 0.5
 		
 		if dir.y < 0 and velocity.y < 0:
-			velocity.y -= 5
+			velocity.y -= gravity/2
 		
 		velocity.y += gravity
 		
@@ -44,8 +49,10 @@ func _physics_process(delta):
 	
 	#increase speed for sprinting
 	if is_sprinting:
-		velocity.x *= sprint_multiplier
-		
+		velocity.x = clamp(velocity.x, -speed * sprint_multiplier, speed * sprint_multiplier)
+	else:
+		velocity.x = clamp(velocity.x, -speed, speed)
+	
 	#velocity += get_floor_velocity()
 	if dir.y < 0:
 		#warning-ignore:return_value_discarded
@@ -53,7 +60,6 @@ func _physics_process(delta):
 	else:
 		#warning-ignore:return_value_discarded
 		move_and_slide_with_snap(velocity, Vector2(0, 10), Vector2(0, -1))
-	
 
 func change_colour(new_colour : Color) -> void:
 	colour = new_colour
