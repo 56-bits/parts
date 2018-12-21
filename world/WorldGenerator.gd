@@ -6,12 +6,13 @@ var t : Terrain
 
 func _ready():
 	f.m("generator initialized")
-	
 	add_child(tgen)
 	tgen.t = t
 
 func generate():
 	tgen.generate_terrain()
+#	var tgen_thread = Thread.new()
+#	tgen_thread.start(tgen, "generate_terrain")
 	
 
 class TerrainGenerator:
@@ -21,26 +22,34 @@ class TerrainGenerator:
 	var t : Terrain
 	
 	func _init():
-		n.octaves = 8
+		n.octaves = 6
 		n.period = 100
 		n.lacunarity = 1.5
 		n.persistence = 0.8
+		n.seed = 1
 		f.m("terrain generator initialized")
 		
 	func generate_terrain():
-		f.m("generating terrain")
-		t.edit_terrain(Vector2(0,0), 3)
+#		f.m("generating terrain")
+		t.call_deferred("rpc", "direct_list_edit", get_list())
+#		f.m("terrain generated")
 		
-		for i in range(50,5000):
-			
-			var h = int((n.get_noise_2d(i, 0)) * 50)
-			
-			for j in range(abs(h) + 50):
-				
-				var p = Vector2(i, j * sign(h)+50)
-				var type = abs(int(n.get_noise_2dv(p)*5))
-				t.rpc("direct_edit",p, type)
-				
-				yield(get_tree(), "idle_frame")
+	func get_list():
 		
-		f.m("terrain generated")
+		var l = {}
+		
+		for i in range(-1000,1000):
+			
+#			yield(get_tree(), "idle_frame")
+			var h = int((n.get_noise_2d(i, 0)) * 100)
+			
+			if abs(i) < 50:
+				h = 0
+			
+			for j in range(h + 100):
+				var p = Vector2(i, 100-j)
+				
+				var type = abs(int(n.get_noise_2dv(p)*6))
+				l[p] = type
+		
+		return l

@@ -11,12 +11,14 @@ var my_player
 
 var players = PlayerList.new()
 
+var client : NetworkedMultiplayerENet
+
 func _ready():
 	players.name = "PlayerList"
 	add_child(players)
 	
 	#create client
-	var client = NetworkedMultiplayerENet.new()
+	client = NetworkedMultiplayerENet.new()
 	client.create_client($"/root/globals".settings.server_ip, $"/root/globals".settings.port)
 	get_tree().set_network_peer(client)
 	
@@ -85,17 +87,24 @@ remote func update_players():
 
 func close_network():
 	get_tree().set_network_peer(null)
-	
 
 # network bulk synchronisation
 func request_sync():
 	rpc_id(1, "sync_world", selfPeerID)
 	f.new_message("Resync requested")
 
-remote func recieve_sync(data):
-	$world.clear_world()
+remote func recieve_sync(n):
+	f.new_message("sync started", "good")
+	var ds = RPCDataStreamer.new()
+	ds.name = n
+	add_child(ds)
+	ds.start_recieving()
+	ds.connect("stream_completed", self, "sync_completed")
+	
+func sync_completed(data):
+	$world.clear_world()	
 	$world.set_world(data)
-	f.new_message("Resync successfull", "good")
+	f.new_message("sync completed", "good")
 
 func _on_network_tick(): # is a signal from the timer
 	my_player._network_tick()

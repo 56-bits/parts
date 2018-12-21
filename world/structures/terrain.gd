@@ -10,6 +10,10 @@ func _ready():
 sync func direct_edit(cell, type = 0):
 	set_cellv(cell, type)
 
+sync func direct_list_edit(list : Dictionary):
+	for pos in list:
+		set_cellv(pos, list[pos])
+
 sync func edit_terrain(pos, type = 0):
 	var cell = world_to_map(pos)
 	

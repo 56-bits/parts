@@ -7,6 +7,8 @@ export var spawn_point := Vector2(0, -200)
 
 var npc_pk = preload("res://characters/npc/NPC.tscn")
 
+var server : NetworkedMultiplayerENet
+
 func _ready():
 	players.name = "PlayerList"
 	add_child(players)
@@ -18,7 +20,7 @@ func _ready():
 		$world/npcs.add_child(n)
 	
 	#start server
-	var server = NetworkedMultiplayerENet.new()
+	server = NetworkedMultiplayerENet.new()
 		
 	var status = server.create_server(globals.settings.port, globals.settings.player_limit)
 	
@@ -67,9 +69,13 @@ remote func register_player(id, inf):
 	f.m(inf["name"] + " has registered", f.GOOD)
 
 remote func sync_world(id : int):
-	var data = $world.world_data()
+	var data : Dictionary = $world.world_data()
 	f.m("%s aka %s requested a resync" % [id, players.get_player(id)["info"]["name"]])
-	rpc_id(id, "recieve_sync", data)
+	var ds = RPCDataStreamer.new()
+	ds.name = str(hash(data))
+	add_child(ds)
+	ds.config_stream(id, data)
+	rpc_id(id, "recieve_sync", ds.name)
 
 sync func update_players():
 	for p in $"world/players".get_children():
