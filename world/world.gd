@@ -39,10 +39,9 @@ func world_data():
 func set_world(data):	
 	var terrain = data["terrain"]
 	
-	for type in terrain.keys():
+	for type in terrain.keys():	
 		for pos in terrain[type]:
 			$terrain.set_cellv(pos, type)
-	
 	
 	var npcs = data["npcs"]
 	for id in npcs:

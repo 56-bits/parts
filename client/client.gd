@@ -4,8 +4,8 @@ var spawn_point = Vector2(0, -200)
 
 var selfPeerID = 0
 
-var player_pk = preload("res://client/player/Player.tscn")
-var other_player_pk = preload("res://client/player/PlayerPuppet.tscn")
+#var player_pk = preload("res://client/player/Player.tscn")
+#var other_player_pk = preload("res://client/player/PlayerPuppet.tscn")
 
 var my_player
 
@@ -25,7 +25,7 @@ func _ready():
 	f.new_message("connecting to server...")
 	
 	selfPeerID = get_tree().get_network_unique_id()
-		
+	players.self_id = selfPeerID
 	#connect functions
 	
 	get_tree().connect("network_peer_connected", self, "_peer_connected")
@@ -38,15 +38,15 @@ func _peer_connected(id):
 	if id != 1:
 		f.new_message("peer %s connected" % str(id))
 		
-		var player = other_player_pk.instance()
-		player.name = String(id)
-		player.position = spawn_point
-		player.set_network_master(id)
-		$world/players.add_child(player)
+#		var player = other_player_pk.instance()
+#		player.name = String(id)
+#		player.position = spawn_point
+#		player.set_network_master(id)
+#		$world/players.add_child(player)
 
 func _peer_disconnected(id):
 	if id != 1:
-		f.new_message("peer %s disconnected" % players[id]["player_name"])
+		f.new_message("peer %s disconnected" % str(id))# players[id]["player_name"])
 		get_node("world/players/" + str(id)).queue_free()
 		players.erase(id)
 	else: #since the server is id 1, its is equivalent to the server disconnecting
@@ -55,13 +55,12 @@ func _peer_disconnected(id):
 func _connected_ok():
 	f.new_message("connected to server", "good")
 	
-	my_player = player_pk.instance()
-	my_player.name = String(selfPeerID)
-	my_player.position = spawn_point
-	my_player.set_network_master(selfPeerID)
-	$world/players.add_child(my_player)
+#	my_player = player_pk.instance()
+#	my_player.name = String(selfPeerID)
+#	my_player.position = spawn_point
+#	my_player.set_network_master(selfPeerID)
+#	$world/players.add_child(my_player)
 	
-	$network_tick.start()
 
 func _connected_fail():
 	f.new_message("connection failed", "bad")
@@ -75,8 +74,6 @@ func _server_disconnected():
 
 #touch if suicidal
 remote func get_player_inf():
-	f.new_message("registering self as %s with %s" % [str(selfPeerID), str(my_player.get_state())])
-	rpc_id(1, "register_player", selfPeerID, my_player.get_state())
 	request_sync()
 
 remote func update_players():
@@ -105,7 +102,13 @@ func sync_completed(data):
 	$world.clear_world()	
 	$world.set_world(data)
 	f.new_message("sync completed", "good")
+	f.new_message("registering self as %s" % str(selfPeerID))
+#	rpc_id(1, "register_player", selfPeerID, my_player.get_state())
+	players.rpc("add_player", selfPeerID)
+	players.add_player(selfPeerID)
+	$network_tick.start()
+	
 
 func _on_network_tick(): # is a signal from the timer
-	my_player._network_tick()
+	get_node("world/players/%s" % str(selfPeerID))._network_tick()
 	$gui._network_tick()

@@ -15,6 +15,7 @@ func _process(delta):
 		$menu.visible = !$menu.visible
 
 func player_list():
+	return
 	var players = $"../".players
 	
 	for child in $VSplitContainer/VBoxContainer.get_children():

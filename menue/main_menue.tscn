@@ -45,10 +45,10 @@ position = Vector2( 200, 300 )
 position = Vector2( 200, 400 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2( 512, 300 )
+position = Vector2( 512, 300 )
+offset = Vector2( -512, -300 )
+anchor_mode = 0
 current = true
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource( 2 )

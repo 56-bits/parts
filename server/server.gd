@@ -1,11 +1,11 @@
 extends Node
 
-var player_pk = preload("res://client/player/PlayerPuppet.tscn")
+#var player_pk = preload("res://client/player/PlayerPuppet.tscn")
 var players = PlayerList.new()
 
 export var spawn_point := Vector2(0, -200)
 
-var npc_pk = preload("res://characters/npc/NPC.tscn")
+#var npc_pk = preload("res://characters/npc/NPC.tscn")
 
 var server : NetworkedMultiplayerENet
 
@@ -13,11 +13,11 @@ func _ready():
 	players.name = "PlayerList"
 	add_child(players)
 	
-	for i in range(3):#round(rand_range(5, 20))):
-		var n = npc_pk.instance()
-		n.name = str(i)
-		n.position = spawn_point + Vector2(randi()%200, 0)
-		$world/npcs.add_child(n)
+#	for i in range(3):#round(rand_range(5, 20))):
+#		var n = npc_pk.instance()
+#		n.name = str(i)
+#		n.position = spawn_point + Vector2(randi()%200, 0)
+#		$world/npcs.add_child(n)
 	
 	#start server
 	server = NetworkedMultiplayerENet.new()
@@ -32,6 +32,7 @@ func _ready():
 	
 	f.new_message("server created")
 	
+	players.self_id = 1
 	$network_tick.start()
 	$world.gen.generate()
 	
@@ -42,35 +43,34 @@ func _ready():
 func _client_connected(id):
 	f.new_message("client %s connected" % str(id))
 	
-	players.add_player(id)
-	
 	#get data from player
 	rpc_id(id, "get_player_inf")
+	players.synchronise(id)
 
 func _client_disconnected(id):
-	f.new_message("client %s aka %s disconnected" % [str(id), players.get_player(id)["info"]["name"]])
+	f.m("%s disconnected" % str(id))#f.new_message("client %s aka %s disconnected" % [str(id), players.get_player(id)["info"]["name"]])
 	
 	get_node("world/players/" + str(id)).queue_free()
 	
 	players.erase(id)
 
-remote func register_player(id, inf):
-	players.set_player(id, inf, players.READY)
-	
-	#create player locally
-	var player = player_pk.instance()
-	player.set_state(inf)
-	player.set_network_master(id)
-	$world/players.add_child(player)
-	
-	players.synchronise()
-	rpc("update_players")
-	update_players()
-	f.m(inf["name"] + " has registered", f.GOOD)
+#remote func register_player(id, inf):
+#	players.set_player(id, inf, players.READY)
+#	players.create_players()
+#	#create player locally
+##	var player = player_pk.instance()
+##	player.set_state(inf)
+##	player.set_network_master(id)
+##	$world/players.add_child(player)
+#
+#	players.synchronise()
+##	rpc("update_players")
+##	update_players()
+#	f.m(inf["name"] + " has registered", f.GOOD)
 
 remote func sync_world(id : int):
 	var data : Dictionary = $world.world_data()
-	f.m("%s aka %s requested a resync" % [id, players.get_player(id)["info"]["name"]])
+#	f.m("%s aka %s requested a resync" % [id, players.get_player(id)["info"]["name"]])
 	var ds = RPCDataStreamer.new()
 	ds.name = str(hash(data))
 	add_child(ds)

@@ -12,7 +12,7 @@ func _ready():
 
 func _network_tick():
 	if self.position != last_pos:
-#		rpc("update_movement", self.position, movement, sprint)
+		rpc("update_movement", self.position, movement, sprint)
 		last_pos = self.position
 
 func set_pos(pos : Vector2) -> void:
